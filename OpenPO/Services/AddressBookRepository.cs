@@ -95,6 +95,36 @@ namespace OpenPO.Services
             }
             return (resultList);
         }
+        public List<AddressBook> GetAllAddressBooks(string searchString, string keyCode)
+        {
+            List<AddressBook> resultList = new List<AddressBook>();
+            UDCRepository udcRepository = new UDCRepository();
+            long xRefId = udcRepository.GetUdcByKeyCode(keyCode);
+
+            using (var db = new listensoftwareDBEntities())
+            {
+                var query = from b in db.AddressBooks
+                            .Where(b => b.PeopleXrefId == xRefId)
+                            select b;
+
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                    query = query.Where(s => s.Name.Contains(searchString) || s.FirstName.Contains(searchString) || s.LastName.Contains(searchString));
+
+                }
+
+                query = query.OrderBy(s => s.Name);
+
+
+                foreach (var item in query)
+                {
+                    resultList.Add(item);
+                }
+
+
+            }
+            return (resultList);
+        }
     } //end class
    
 }

@@ -4,15 +4,28 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using OpenPO.Services;
+using OpenPO.Database;
+using System.Data.Entity;
 
 namespace OpenPO.Controllers
 {
+    [RoutePrefix("Api/People")]
     public class PeopleController : ApiController
     {
-        // GET: api/People
-        public IEnumerable<string> Get()
+        private AddressBookRepository addressBookRepository;
+
+        public PeopleController()
         {
-            return new string[] { "value1", "value2" };
+            this.addressBookRepository = new AddressBookRepository();
+        }
+        // GET: api/People
+        public List<AddressBook> Get()
+        {
+            List<AddressBook> listPeople = addressBookRepository.GetAllAddressBooks("", "customer");
+
+            return listPeople;
+    
         }
 
         // GET: api/People/5
