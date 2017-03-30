@@ -29,5 +29,7 @@ namespace OpenPO.Database
         public virtual DbSet<AddressBook> AddressBooks { get; set; }
         public virtual DbSet<GeneralLedger> GeneralLedgers { get; set; }
         public virtual DbSet<POQuote> POQuotes { get; set; }
+        public virtual DbSet<UDC> UDCs { get; set; }
+        public virtual DbSet<Contract> Contracts { get; set; }
     }
 }

@@ -236,11 +236,15 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PeopleController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Database\AcctRec.cs">
       <DependentUpon>ListenSoftwareDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\AddressBook.cs">
+      <DependentUpon>ListenSoftwareDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Contract.cs">
       <DependentUpon>ListenSoftwareDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\GeneralLedger.cs">
@@ -264,6 +268,9 @@
     <Compile Include="Database\POQuote.cs">
       <DependentUpon>ListenSoftwareDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Database\UDC.cs">
+      <DependentUpon>ListenSoftwareDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -276,6 +283,7 @@
     <Compile Include="Services\AccountReceivableRepository.cs" />
     <Compile Include="Services\AddressBookRepository.cs" />
     <Compile Include="Services\POQuoteRepository.cs" />
+    <Compile Include="Services\UDCRepository.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>

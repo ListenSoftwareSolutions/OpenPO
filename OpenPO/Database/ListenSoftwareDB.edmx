@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="listensoftwareDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="listensoftwareDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AcctRec">
           <Key>
             <PropertyRef Name="Id" />
@@ -45,6 +45,18 @@
           <Property Name="Type" Type="varchar" MaxLength="20" />
           <Property Name="PeopleXrefId" Type="bigint" />
         </EntityType>
+        <EntityType Name="Contract">
+          <Key>
+            <PropertyRef Name="ContractId" />
+          </Key>
+          <Property Name="ContractId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AddressId" Type="bigint" />
+          <Property Name="ServiceTypeXRefId" Type="bigint" />
+          <Property Name="StartDate" Type="datetime" />
+          <Property Name="EndDate" Type="datetime" />
+          <Property Name="Cost" Type="money" />
+          <Property Name="RemainingBalance" Type="money" />
+        </EntityType>
         <EntityType Name="GeneralLedger">
           <Key>
             <PropertyRef Name="Id" />
@@ -75,6 +87,15 @@
           <Property Name="ItemId" Type="bigint" />
           <Property Name="SKU" Type="varchar" MaxLength="50" />
           <Property Name="Description" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="UDC">
+          <Key>
+            <PropertyRef Name="XRefId" />
+          </Key>
+          <Property Name="XRefId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductCode" Type="varchar" MaxLength="20" />
+          <Property Name="KeyCode" Type="varchar" MaxLength="50" />
+          <Property Name="Value" Type="varchar" MaxLength="255" />
         </EntityType>
         <Association Name="FK_AcctRec">
           <End Role="AcctRec" Type="Self.AcctRec" Multiplicity="1" />
@@ -115,8 +136,10 @@
         <EntityContainer Name="listensoftwareDBModelStoreContainer">
           <EntitySet Name="AcctRec" EntityType="Self.AcctRec" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AddressBook" EntityType="Self.AddressBook" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Contract" EntityType="Self.Contract" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GeneralLedger" EntityType="Self.GeneralLedger" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="POQuote" EntityType="Self.POQuote" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UDC" EntityType="Self.UDC" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_AcctRec" Association="Self.FK_AcctRec">
             <End Role="AcctRec" EntitySet="AcctRec" />
             <End Role="POQuote" EntitySet="POQuote" />
@@ -130,8 +153,7 @@
             <End Role="POQuote" EntitySet="POQuote" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="listensoftwareDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -265,7 +287,30 @@
             <End Role="AddressBook" EntitySet="AddressBooks" />
             <End Role="POQuote" EntitySet="POQuotes" />
           </AssociationSet>
+          <EntitySet Name="UDCs" EntityType="listensoftwareDBModel.UDC" />
+          <EntitySet Name="Contracts" EntityType="listensoftwareDBModel.Contract" />
         </EntityContainer>
+        <EntityType Name="UDC">
+          <Key>
+            <PropertyRef Name="XRefId" />
+          </Key>
+          <Property Name="XRefId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="KeyCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Value" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Contract">
+          <Key>
+            <PropertyRef Name="ContractId" />
+          </Key>
+          <Property Name="ContractId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AddressId" Type="Int64" />
+          <Property Name="ServiceTypeXRefId" Type="Int64" />
+          <Property Name="StartDate" Type="DateTime" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Precision="3" />
+          <Property Name="Cost" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="RemainingBalance" Type="Decimal" Precision="19" Scale="4" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -344,6 +389,29 @@
                 <ScalarProperty Name="ItemId" ColumnName="ItemId" />
                 <ScalarProperty Name="SKU" ColumnName="SKU" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UDCs">
+            <EntityTypeMapping TypeName="listensoftwareDBModel.UDC">
+              <MappingFragment StoreEntitySet="UDC">
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="KeyCode" ColumnName="KeyCode" />
+                <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+                <ScalarProperty Name="XRefId" ColumnName="XRefId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contracts">
+            <EntityTypeMapping TypeName="listensoftwareDBModel.Contract">
+              <MappingFragment StoreEntitySet="Contract">
+                <ScalarProperty Name="RemainingBalance" ColumnName="RemainingBalance" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="ServiceTypeXRefId" ColumnName="ServiceTypeXRefId" />
+                <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+                <ScalarProperty Name="ContractId" ColumnName="ContractId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

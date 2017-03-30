@@ -12,6 +12,8 @@
         <AssociationConnector Association="listensoftwareDBModel.FK_AcctRec" ManuallyRouted="false" />
         <AssociationConnector Association="listensoftwareDBModel.FK_Customer" ManuallyRouted="false" />
         <AssociationConnector Association="listensoftwareDBModel.FK_Vendor" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="listensoftwareDBModel.UDC" Width="1.5" PointX="5.375" PointY="4.75" />
+        <EntityTypeShape EntityType="listensoftwareDBModel.Contract" Width="1.5" PointX="3.375" PointY="7.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
