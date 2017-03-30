@@ -1,0 +1,373 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="listensoftwareDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AcctRec">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DocType" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="OpenAmount" Type="money" Nullable="false" />
+          <Property Name="DiscountDueDate" Type="date" Nullable="false" />
+          <Property Name="GLDate" Type="date" Nullable="false" />
+          <Property Name="InvoiceDate" Type="date" Nullable="false" />
+          <Property Name="CreateDate" Type="date" Nullable="false" />
+          <Property Name="DocNumber" Type="bigint" Nullable="false" />
+          <Property Name="Remarks" Type="varchar" MaxLength="255" />
+          <Property Name="NetTerms" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="AddressId" Type="bigint" Nullable="false" />
+          <Property Name="ItemId" Type="bigint" />
+          <Property Name="SKU" Type="varchar" MaxLength="50" />
+          <Property Name="Description" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="AddressBook">
+          <Key>
+            <PropertyRef Name="AddressId" />
+          </Key>
+          <Property Name="AddressId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" />
+          <Property Name="Company" Type="varchar" MaxLength="255" />
+          <Property Name="CellPhone" Type="nchar" MaxLength="20" />
+          <Property Name="MailingCity" Type="varchar" MaxLength="50" />
+          <Property Name="MailingState" Type="varchar" MaxLength="50" />
+          <Property Name="MailingAddress" Type="varchar" MaxLength="255" />
+          <Property Name="MailingZipcode" Type="varchar" MaxLength="50" />
+          <Property Name="BillingCity" Type="varchar" MaxLength="50" />
+          <Property Name="BillingState" Type="varchar" MaxLength="50" />
+          <Property Name="BillingZipcode" Type="varchar" MaxLength="50" />
+          <Property Name="BillingAddress" Type="varchar" MaxLength="255" />
+          <Property Name="Type" Type="varchar" MaxLength="20" />
+          <Property Name="PeopleXrefId" Type="bigint" />
+        </EntityType>
+        <EntityType Name="GeneralLedger">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DocNumber" Type="bigint" Nullable="false" />
+          <Property Name="DocType" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Amount" Type="money" Nullable="false" />
+          <Property Name="LedgerType" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="GLDate" Type="datetime" Nullable="false" />
+          <Property Name="AccountId" Type="bigint" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="AddressId" Type="bigint" Nullable="false" />
+          <Property Name="Comment" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="POQuote">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QuoteAmount" Type="money" Nullable="false" />
+          <Property Name="SubmittedDate" Type="date" Nullable="false" />
+          <Property Name="PoId" Type="bigint" Nullable="false" />
+          <Property Name="DocNumber" Type="bigint" Nullable="false" />
+          <Property Name="Remarks" Type="varchar" MaxLength="255" />
+          <Property Name="CustomerAddressId" Type="bigint" Nullable="false" />
+          <Property Name="VendorAddressId" Type="bigint" Nullable="false" />
+          <Property Name="ItemId" Type="bigint" />
+          <Property Name="SKU" Type="varchar" MaxLength="50" />
+          <Property Name="Description" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <Association Name="FK_AcctRec">
+          <End Role="AcctRec" Type="Self.AcctRec" Multiplicity="1" />
+          <End Role="POQuote" Type="Self.POQuote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AcctRec">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="POQuote">
+              <PropertyRef Name="PoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Customer">
+          <End Role="AddressBook" Type="Self.AddressBook" Multiplicity="1" />
+          <End Role="POQuote" Type="Self.POQuote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AddressBook">
+              <PropertyRef Name="AddressId" />
+            </Principal>
+            <Dependent Role="POQuote">
+              <PropertyRef Name="CustomerAddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vendor">
+          <End Role="AddressBook" Type="Self.AddressBook" Multiplicity="1" />
+          <End Role="POQuote" Type="Self.POQuote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AddressBook">
+              <PropertyRef Name="AddressId" />
+            </Principal>
+            <Dependent Role="POQuote">
+              <PropertyRef Name="VendorAddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="listensoftwareDBModelStoreContainer">
+          <EntitySet Name="AcctRec" EntityType="Self.AcctRec" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AddressBook" EntityType="Self.AddressBook" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GeneralLedger" EntityType="Self.GeneralLedger" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="POQuote" EntityType="Self.POQuote" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AcctRec" Association="Self.FK_AcctRec">
+            <End Role="AcctRec" EntitySet="AcctRec" />
+            <End Role="POQuote" EntitySet="POQuote" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Customer" Association="Self.FK_Customer">
+            <End Role="AddressBook" EntitySet="AddressBook" />
+            <End Role="POQuote" EntitySet="POQuote" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vendor" Association="Self.FK_Vendor">
+            <End Role="AddressBook" EntitySet="AddressBook" />
+            <End Role="POQuote" EntitySet="POQuote" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="listensoftwareDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AcctRec">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DocType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OpenAmount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="DiscountDueDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="GLDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="InvoiceDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DocNumber" Type="Int64" Nullable="false" />
+          <Property Name="Remarks" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="NetTerms" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AddressId" Type="Int64" Nullable="false" />
+          <Property Name="ItemId" Type="Int64" />
+          <Property Name="SKU" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="POQuotes" Relationship="Self.FK_AcctRec" FromRole="AcctRec" ToRole="POQuote" />
+        </EntityType>
+        <EntityType Name="AddressBook">
+          <Key>
+            <PropertyRef Name="AddressId" />
+          </Key>
+          <Property Name="AddressId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Company" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CellPhone" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="MailingCity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MailingState" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MailingAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="MailingZipcode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BillingCity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BillingState" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BillingZipcode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BillingAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Type" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PeopleXrefId" Type="Int64" />
+          <NavigationProperty Name="POQuotes" Relationship="Self.FK_Customer" FromRole="AddressBook" ToRole="POQuote" />
+          <NavigationProperty Name="POQuotes1" Relationship="Self.FK_Vendor" FromRole="AddressBook" ToRole="POQuote" />
+        </EntityType>
+        <EntityType Name="GeneralLedger">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DocNumber" Type="Int64" Nullable="false" />
+          <Property Name="DocType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="LedgerType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="GLDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="AccountId" Type="Int64" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="AddressId" Type="Int64" Nullable="false" />
+          <Property Name="Comment" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="POQuote">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QuoteAmount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="SubmittedDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="PoId" Type="Int64" Nullable="false" />
+          <Property Name="DocNumber" Type="Int64" Nullable="false" />
+          <Property Name="Remarks" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerAddressId" Type="Int64" Nullable="false" />
+          <Property Name="VendorAddressId" Type="Int64" Nullable="false" />
+          <Property Name="ItemId" Type="Int64" />
+          <Property Name="SKU" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AcctRec" Relationship="Self.FK_AcctRec" FromRole="POQuote" ToRole="AcctRec" />
+          <NavigationProperty Name="AddressBook" Relationship="Self.FK_Customer" FromRole="POQuote" ToRole="AddressBook" />
+          <NavigationProperty Name="AddressBook1" Relationship="Self.FK_Vendor" FromRole="POQuote" ToRole="AddressBook" />
+        </EntityType>
+        <Association Name="FK_AcctRec">
+          <End Role="AcctRec" Type="Self.AcctRec" Multiplicity="1" />
+          <End Role="POQuote" Type="Self.POQuote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AcctRec">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="POQuote">
+              <PropertyRef Name="PoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Customer">
+          <End Role="AddressBook" Type="Self.AddressBook" Multiplicity="1" />
+          <End Role="POQuote" Type="Self.POQuote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AddressBook">
+              <PropertyRef Name="AddressId" />
+            </Principal>
+            <Dependent Role="POQuote">
+              <PropertyRef Name="CustomerAddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vendor">
+          <End Role="AddressBook" Type="Self.AddressBook" Multiplicity="1" />
+          <End Role="POQuote" Type="Self.POQuote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AddressBook">
+              <PropertyRef Name="AddressId" />
+            </Principal>
+            <Dependent Role="POQuote">
+              <PropertyRef Name="VendorAddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="listensoftwareDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AcctRecs" EntityType="Self.AcctRec" />
+          <EntitySet Name="AddressBooks" EntityType="Self.AddressBook" />
+          <EntitySet Name="GeneralLedgers" EntityType="Self.GeneralLedger" />
+          <EntitySet Name="POQuotes" EntityType="Self.POQuote" />
+          <AssociationSet Name="FK_AcctRec" Association="Self.FK_AcctRec">
+            <End Role="AcctRec" EntitySet="AcctRecs" />
+            <End Role="POQuote" EntitySet="POQuotes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Customer" Association="Self.FK_Customer">
+            <End Role="AddressBook" EntitySet="AddressBooks" />
+            <End Role="POQuote" EntitySet="POQuotes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vendor" Association="Self.FK_Vendor">
+            <End Role="AddressBook" EntitySet="AddressBooks" />
+            <End Role="POQuote" EntitySet="POQuotes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="listensoftwareDBModelStoreContainer" CdmEntityContainer="listensoftwareDBEntities">
+          <EntitySetMapping Name="AcctRecs">
+            <EntityTypeMapping TypeName="listensoftwareDBModel.AcctRec">
+              <MappingFragment StoreEntitySet="AcctRec">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DocType" ColumnName="DocType" />
+                <ScalarProperty Name="OpenAmount" ColumnName="OpenAmount" />
+                <ScalarProperty Name="DiscountDueDate" ColumnName="DiscountDueDate" />
+                <ScalarProperty Name="GLDate" ColumnName="GLDate" />
+                <ScalarProperty Name="InvoiceDate" ColumnName="InvoiceDate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="DocNumber" ColumnName="DocNumber" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="NetTerms" ColumnName="NetTerms" />
+                <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="SKU" ColumnName="SKU" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AddressBooks">
+            <EntityTypeMapping TypeName="listensoftwareDBModel.AddressBook">
+              <MappingFragment StoreEntitySet="AddressBook">
+                <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
+                <ScalarProperty Name="CellPhone" ColumnName="CellPhone" />
+                <ScalarProperty Name="MailingCity" ColumnName="MailingCity" />
+                <ScalarProperty Name="MailingState" ColumnName="MailingState" />
+                <ScalarProperty Name="MailingAddress" ColumnName="MailingAddress" />
+                <ScalarProperty Name="MailingZipcode" ColumnName="MailingZipcode" />
+                <ScalarProperty Name="BillingCity" ColumnName="BillingCity" />
+                <ScalarProperty Name="BillingState" ColumnName="BillingState" />
+                <ScalarProperty Name="BillingZipcode" ColumnName="BillingZipcode" />
+                <ScalarProperty Name="BillingAddress" ColumnName="BillingAddress" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="PeopleXrefId" ColumnName="PeopleXrefId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GeneralLedgers">
+            <EntityTypeMapping TypeName="listensoftwareDBModel.GeneralLedger">
+              <MappingFragment StoreEntitySet="GeneralLedger">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DocNumber" ColumnName="DocNumber" />
+                <ScalarProperty Name="DocType" ColumnName="DocType" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="LedgerType" ColumnName="LedgerType" />
+                <ScalarProperty Name="GLDate" ColumnName="GLDate" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="POQuotes">
+            <EntityTypeMapping TypeName="listensoftwareDBModel.POQuote">
+              <MappingFragment StoreEntitySet="POQuote">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="QuoteAmount" ColumnName="QuoteAmount" />
+                <ScalarProperty Name="SubmittedDate" ColumnName="SubmittedDate" />
+                <ScalarProperty Name="PoId" ColumnName="PoId" />
+                <ScalarProperty Name="DocNumber" ColumnName="DocNumber" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="CustomerAddressId" ColumnName="CustomerAddressId" />
+                <ScalarProperty Name="VendorAddressId" ColumnName="VendorAddressId" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="SKU" ColumnName="SKU" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
