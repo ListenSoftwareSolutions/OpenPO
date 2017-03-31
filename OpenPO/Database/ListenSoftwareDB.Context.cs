@@ -19,7 +19,6 @@ namespace OpenPO.Database
             : base("name=listensoftwareDBEntities")
         {
             this.Configuration.LazyLoadingEnabled = false;
-            //this.Configuration.ProxyCreationEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

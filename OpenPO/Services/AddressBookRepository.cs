@@ -6,7 +6,15 @@ using OpenPO.Database;
 
 namespace OpenPO.Services
 {
-    public class AddressBookRepository
+    public interface IAddressBookRepository
+    {
+        void DeleteAddressBook(long paramAddressId);
+        void UpdateAddressBook(AddressBook addressBookUpdate);
+        AddressBook GetAddressBook(long? paramAddressId);
+        List<AddressBook> GetPersonList(string keyCode);
+        List<AddressBook> GetAllAddressBooks(string searchString, string keyCode);
+    }
+    public class AddressBookRepository:IAddressBookRepository
     {
         public void AddAddressBook(AddressBook addressBook)
         {

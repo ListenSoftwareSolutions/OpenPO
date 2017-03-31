@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Owin;
 using Owin;
+using Microsoft.Extensions.DependencyInjection;
+using OpenPO.Services;
 
 [assembly: OwinStartup(typeof(OpenPO.Startup))]
 
@@ -12,7 +14,13 @@ namespace OpenPO
     {
         public void Configuration(IAppBuilder app)
         {
+            app.MapSignalR();
             ConfigureAuth(app);
+        }
+        public void ConfigureServices(IServiceCollection services)
+        {
+            
+            services.AddTransient<IAddressBookRepository, AddressBookRepository>();
         }
     }
 }

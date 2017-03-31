@@ -13,16 +13,17 @@ namespace OpenPO.Controllers
     [RoutePrefix("Api/People")]
     public class PeopleController : ApiController
     {
-        private AddressBookRepository addressBookRepository;
+        private IAddressBookRepository _addressBookRepository;
 
-        public PeopleController()
+        public PeopleController( IAddressBookRepository addressBookRepository)
         {
-            this.addressBookRepository = new AddressBookRepository();
+            //this.addressBookRepository = new AddressBookRepository();
+            _addressBookRepository = addressBookRepository;
         }
         // GET: api/People
         public List<AddressBook> Get()
         {
-            List<AddressBook> listPeople = addressBookRepository.GetAllAddressBooks("", "customer");
+            List<AddressBook> listPeople = _addressBookRepository.GetAllAddressBooks("", "customer");
 
             return listPeople;
     
