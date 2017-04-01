@@ -30,24 +30,29 @@ namespace OpenPO.Controllers
         }
 
         // GET: api/People/5
-        public string Get(int id)
+        public AddressBook Get(int id)
         {
-            return "value";
+            AddressBook person = _addressBookRepository.GetAddressBook(id);
+
+            return person;
         }
 
         // POST: api/People
-        public void Post([FromBody]string value)
+        public void Post([FromBody]AddressBook addressBook)
         {
+            _addressBookRepository.AddAddressBook(addressBook);
         }
 
         // PUT: api/People/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, [FromBody]AddressBook addressBook)
         {
+            _addressBookRepository.UpdateAddressBook(addressBook);
         }
 
         // DELETE: api/People/5
         public void Delete(int id)
         {
+            _addressBookRepository.DeleteAddressBook(id);
         }
     }
 }

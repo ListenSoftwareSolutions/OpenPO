@@ -9,6 +9,7 @@ namespace OpenPO.Services
     public interface IAddressBookRepository
     {
         void DeleteAddressBook(long paramAddressId);
+        void AddAddressBook(AddressBook addressBook);
         void UpdateAddressBook(AddressBook addressBookUpdate);
         AddressBook GetAddressBook(long? paramAddressId);
         List<AddressBook> GetPersonList(string keyCode);
@@ -24,6 +25,7 @@ namespace OpenPO.Services
                 db.SaveChanges();
             }
         }
+       
         public void DeleteAddressBook(long paramAddressId)
         {
             using (var db = new listensoftwareDBEntities())
