@@ -18,7 +18,6 @@ namespace OpenPO.Database
         public listensoftwareDBEntities()
             : base("name=listensoftwareDBEntities")
         {
-            this.Configuration.LazyLoadingEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

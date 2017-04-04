@@ -15,12 +15,14 @@ namespace OpenPO.Controllers
     {
         private IAddressBookRepository _addressBookRepository;
 
+        
         public PeopleController( IAddressBookRepository addressBookRepository)
         {
             //this.addressBookRepository = new AddressBookRepository();
             _addressBookRepository = addressBookRepository;
         }
         // GET: api/People
+        //[Authorize]
         public List<AddressBook> Get()
         {
             List<AddressBook> listPeople = _addressBookRepository.GetAllAddressBooks("", "customer");

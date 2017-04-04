@@ -45,6 +45,7 @@
           <Property Name="Type" Type="varchar" MaxLength="20" />
           <Property Name="PeopleXrefId" Type="bigint" />
           <Property Name="ProductKey" Type="varchar" MaxLength="100" />
+          <Property Name="Email" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Contract">
           <Key>
@@ -201,6 +202,7 @@
           <NavigationProperty Name="POQuotes" Relationship="Self.FK_Customer" FromRole="AddressBook" ToRole="POQuote" />
           <NavigationProperty Name="POQuotes1" Relationship="Self.FK_Vendor" FromRole="AddressBook" ToRole="POQuote" />
           <Property Name="ProductKey" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="GeneralLedger">
           <Key>
@@ -342,6 +344,7 @@
           <EntitySetMapping Name="AddressBooks">
             <EntityTypeMapping TypeName="listensoftwareDBModel.AddressBook">
               <MappingFragment StoreEntitySet="AddressBook">
+                <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="ProductKey" ColumnName="ProductKey" />
                 <ScalarProperty Name="AddressId" ColumnName="AddressId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
