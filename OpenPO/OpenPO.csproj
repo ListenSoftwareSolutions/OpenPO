@@ -749,8 +749,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\MyScripts\AddressBookApp.js" />
+    <Content Include="Scripts\MyScripts\app.js" />
     <Content Include="Scripts\MyScripts\Login.js" />
-    <Content Include="Scripts\MyScripts\Module.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Web.config" />

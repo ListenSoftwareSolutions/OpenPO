@@ -1,4 +1,5 @@
-﻿app.service('peopleService', function ($http) {
+﻿angular.module('myPeopleApp', [])
+.service('peopleService', function ($http) {
     this.post = function (addressBook) {
         var accesstoken = sessionStorage.getItem('accessToken');
 
@@ -29,26 +30,9 @@
             headers: authHeaders
         });
         return response;
-    };
-    this.getPerson = function (addressId) {
-
-        var accesstoken = sessionStorage.getItem('accessToken');
-
-        var authHeaders = {};
-        if (accesstoken) {
-            authHeaders.Authorization = 'Bearer ' + accesstoken;
-        }
-
-        var response = $http({
-            url: "/api/people/" + addressId,
-            method: "GET",
-            headers: authHeaders
-        });
-        return response;
-    };
-});
-
-app.controller('PeopleController', ['$scope', 'peopleService', function ($scope, peopleService) {
+    }
+})
+.controller('PeopleController', ['$scope', 'peopleService', function ($scope, peopleService) {
     $scope.People = [];
 
     $scope.Message = "";
@@ -71,7 +55,7 @@ app.controller('PeopleController', ['$scope', 'peopleService', function ($scope,
 
     $scope.editPerson = function (addressId) {
         window.location("/people/edit/" + addressId);
-      
+
     }
 
     $scope.addPerson = function () {

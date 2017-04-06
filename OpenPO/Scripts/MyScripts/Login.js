@@ -1,5 +1,5 @@
-﻿app.service('loginService', function ($http) {
-
+﻿angular.module('AppLoginModule', [])
+.service('loginService', function ($http) {
     this.register = function (userInfo) {
         var resp = $http({
             url: "/api/Account/Register",
@@ -19,11 +19,9 @@
         });
         return resp;
     };
-});
-//2.
-app.controller('LoginController', ['$scope', 'loginService', function ($scope, loginService) {
-
-    //Scope Declaration
+})
+.controller('LoginController', ['$scope', 'loginService', function ($scope, loginService)
+{
     $scope.responseData = "";
 
     $scope.userName = "";
@@ -68,6 +66,13 @@ app.controller('LoginController', ['$scope', 'loginService', function ($scope, l
         window.location.href = '/People/Index';
     };
 
+    $scop.logout = function ()
+    {
+        sessionStorage.setItem('userName', null);
+        sessionStorage.setItem('accessToken', null);
+        sessionStorage.setItem('refreshToken', null);
+        window.location.href = '/Home/Index';
+    }
     //Function to Login. This will generate Token 
     $scope.login = function () {
         //This is the information to pass for token based authentication
@@ -96,4 +101,4 @@ app.controller('LoginController', ['$scope', 'loginService', function ($scope, l
 
     };
 }]);
-//LoginController.$inject = ['$scope'];
+
