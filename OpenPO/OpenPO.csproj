@@ -753,6 +753,7 @@
     <Content Include="Scripts\MyScripts\Login.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Views\Login\securityinfo.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -769,7 +770,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_loginPartial.cshtml" />
-    <Content Include="Views\Login\securityinfo.cshtml" />
+    <Content Include="Views\Login\Registration.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

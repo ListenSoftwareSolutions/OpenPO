@@ -51,7 +51,7 @@ namespace OpenPO.Controllers
 
         public ISecureDataFormat<AuthenticationTicket> AccessTokenFormat { get; private set; }
 
-        // GET api/Account/UserInfo
+         // GET api/Account/UserInfo
         [HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
         [Route("UserInfo")]
         public UserInfoViewModel GetUserInfo()

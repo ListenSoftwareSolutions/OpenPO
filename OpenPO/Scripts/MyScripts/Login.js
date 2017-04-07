@@ -40,6 +40,8 @@
     //Function to register user
     $scope.registerUser = function () {
 
+        alert('reached');
+
         $scope.responseData = "";
 
         //The User Registration Information
@@ -62,12 +64,13 @@
     };
 
 
-    $scope.redirect = function () {
-        window.location.href = '/People/Index';
-    };
+    //$scope.redirect = function () {
+   //     window.location.href = '/People/Index';
+    //};
 
-    $scop.logout = function ()
+    $scope.logout = function ()
     {
+        
         sessionStorage.setItem('userName', null);
         sessionStorage.setItem('accessToken', null);
         sessionStorage.setItem('refreshToken', null);
