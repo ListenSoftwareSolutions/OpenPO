@@ -1,13 +1,24 @@
 ﻿angular.module('AppLoginModule', [])
 .service('loginService', function ($http) {
+
+    
+    this.register = function (userInfo) {
+        return $http.post('/api/account/register', userInfo).then(function (response) {
+            return response;
+        });
+    };
+
+    /*
     this.register = function (userInfo) {
         var resp = $http({
-            url: "/api/Account/Register",
+            url: "api/Account/Register",
             method: "POST",
             data: userInfo,
         });
         return resp;
-    };
+           };
+    */
+ 
 
     this.login = function (userlogin) {
 
@@ -40,8 +51,6 @@
     //Function to register user
     $scope.registerUser = function () {
 
-        alert('reached');
-
         $scope.responseData = "";
 
         //The User Registration Information
@@ -50,7 +59,7 @@
             Password: $scope.userRegistrationPassword,
             ConfirmPassword: $scope.userRegistrationConfirmPassword
         };
-
+        
         var promiseregister = loginService.register(userRegistrationInfo);
 
         promiseregister.then(function (resp) {
@@ -59,7 +68,7 @@
             $scope.userRegistrationPassword = "";
             $scope.userRegistrationConfirmPassword = "";
         }, function (err) {
-            $scope.responseData = "Error " + err.status;
+            $scope.responseData = "Error " + err.statusText;
         });
     };
 

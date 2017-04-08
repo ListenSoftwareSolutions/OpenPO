@@ -1,12 +1,8 @@
 ﻿
-@{
-    ViewBag.Title = "register";
-}
 
-<h2>register</h2>
 <div ng-app="AppLoginModule">
     <div ng-controller="LoginController">
-        <h4>Security Info</h4>
+        <h4>Registration</h4>
 
         <table class="table table-bordered table-striped table-condensed">
             <tr>
@@ -36,6 +32,7 @@
                     <input type="button" value="Register"
                            class="form-control btn btn-success"
                            ng-click="registerUser()" />
+                    <span>{{responseData}}</span>
                 </td>
             </tr>
         </table>
