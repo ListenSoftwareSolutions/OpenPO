@@ -288,7 +288,8 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="Controllers\PeopleController.cs" />
+    <Compile Include="Controllers\OpenPOController.cs" />
+    <Compile Include="Controllers\PeopleApiController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Database\AcctRec.cs">
       <DependentUpon>ListenSoftwareDB.tt</DependentUpon>
@@ -345,6 +346,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\purchaseOrder.css" />
     <Content Include="Content\themes\base\images\animated-overlay.gif" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -771,6 +773,8 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_loginPartial.cshtml" />
     <Content Include="Views\Login\Registration.cshtml" />
+    <Content Include="Views\Home\Company.cshtml" />
+    <Content Include="Views\OpenPO\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

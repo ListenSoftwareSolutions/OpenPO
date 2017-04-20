@@ -1,0 +1,167 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+.siteContainer {
+  max-width: 980px;
+  margin: 0 auto;
+}
+h1 {
+  font-size: 2em;
+  text-align: center;
+  padding: .5em 0;
+}
+/*
+  Company name and P. O. order
+*************************/
+.companyName, .purchaseOrder{
+  padding: .5em 1em;
+}
+#address {
+  padding-top: .5em;
+}
+.vendor, .shipTo {
+  padding: .5em 1em;
+}
+@media (min-width: 600px) {
+  .twoColumn {
+    width: 62%;
+    margin: 0 auto;
+  }
+  .companyName {
+    float: left;
+    width: 55%
+  }
+  .purchaseOrder {
+    float: right;
+    width: 25%;
+  }
+  .vendor {
+    clear: both;
+    float: left;
+    width: 30%;
+    margin-left: 1.8em;
+  }
+  .shipTo {
+    float: right;
+    width: 30%;
+  }
+  .orderDetails {
+    clear: both;
+    padding-top: .6em;
+  }
+}
+@media (min-width: 750px) {
+  .twoColumn {
+    width: 62%;
+    margin: 0 auto;
+  }
+  .twoColumn h5 {
+    float: left;
+    margin-left: -2.5em;
+  }
+  .twoColumn p {
+    float: right;
+  }
+  .companyName {
+    float: left;
+    width: 30%
+  }
+  .purchaseOrder {
+    float: right;
+    width: 30%;
+  }
+  .vendor {
+    clear: both;
+    float: left;
+    width: 30%;
+    margin-left: 1.8em;
+  }
+  .shipTo {
+    float: right;
+    width: 30%;
+  }
+}
+/*
+  Order details
+*************************/
+.boxItems {
+  margin: 1em;
+  border: 2px solid #eee;
+}
+.boxItems h2 {
+  font-size: 1.2em;
+  text-align: center;
+  padding: .5em 0;
+  background-color: #eee;
+}
+.boxItems p {
+  font-size: 1em;
+  height: 4em;
+  border: none;
+}
+.boxItems input {
+  width: 100%;
+  height: 5.5em;
+  outline: none;
+  background-color: rgba(0, 0, 210, 0.3);
+}
+/*
+  Totals
+*************************/
+.totals {
+  display: block;
+  clear: both;
+  width: 95%;
+  margin: 0 auto;
+  border: 2px solid #eee;
+}
+.totals h2 {
+  font-size: 1.2em;
+  text-align: center;
+  padding: .5em;
+  background-color: #eee;
+}
+.totals p {
+  font-size: 1em;
+  height: 4em;
+  border: none;
+}
+@media (min-width: 750px) {
+  .orderDetails {
+    clear: both;
+    padding-top: .6em;
+  }
+  .boxItems {
+    float: left;
+    width: 32.8%;
+    margin: 0;
+  }
+  .totals {
+    display: block;
+    float: right;
+    clear: both;
+    width: 33%;
+    margin-right: .2em;
+  }
+}
+/*
+  Submit button
+*************************/
+.button {
+  clear: both;
+  margin: 1em;
+}
+.button button {
+  border: none;
+  background: none;
+  background-color: #eee;
+  font-size: 1.4em;
+  padding: .5em;
+  cursor: pointer;
+  transition: .5s;
+}
+.button button:hover {
+  background-color: #ddd;
+}

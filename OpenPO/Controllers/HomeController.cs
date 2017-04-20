@@ -14,5 +14,9 @@ namespace OpenPO.Controllers
 
             return View();
         }
+        public ActionResult Company()
+        {
+            return View();
+        }
     }
 }

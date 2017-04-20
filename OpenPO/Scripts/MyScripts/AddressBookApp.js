@@ -1,5 +1,5 @@
-﻿angular.module('myPeopleApp', [])
-.service('peopleService', function ($http) {
+﻿angular.module('AppAddressBookModule', [])
+.service('AddressBookService', function ($http) {
     this.post = function (addressBook) {
         var accesstoken = sessionStorage.getItem('accessToken');
 
@@ -32,21 +32,22 @@
         return response;
     }
 })
-.controller('PeopleController', ['$scope', 'peopleService', function ($scope, peopleService) {
-    $scope.People = [];
-
+.controller('AddressBookController', ['$scope', 'AddressBookService', function ($scope, AddressBookService) {
+    $scope.Companies = [];
+    
     $scope.Message = "";
     $scope.userName = sessionStorage.getItem('userName');
 
 
-    loadPeople();
+    //loadPeople();
 
-    function loadPeople() {
+    $scope.loadPeople = function loadPeople() {
 
-
-        var promise = peopleService.get();
+  
+        var promise = AddressBookService.get();
         promise.then(function (resp) {
-            $scope.People = resp.data;
+            
+            $scope.Companies = resp.data;
             $scope.Message = "Call Completed Successfully";
         }, function (err) {
             $scope.Message = "Error!!! " + err.status
@@ -59,7 +60,7 @@
     }
 
     $scope.addPerson = function () {
-        var promise = peopleService.post($scope.addressBook);
+        var promise = AddressBookService.post($scope.addressBook);
         promise.then(function (resp) {
             $scope.Message = "Call Completed Successfully";
             //window.location.path("/people");
@@ -67,9 +68,5 @@
             $scope.Message = "Error!!! " + err.status
         });
     }
-    $scope.logout = function () {
-
-        sessionStorage.removeItem('accessToken');
-        window.location.href = '/Login/SecurityInfo';
-    };
+   
 }]);

@@ -14,13 +14,17 @@ namespace OpenPO
     {
         public void Configuration(IAppBuilder app)
         {
-            app.MapSignalR();
+      
+      
             ConfigureAuth(app);
         }
         public void ConfigureServices(IServiceCollection services)
         {
-            
+          
+
             services.AddTransient<IAddressBookRepository, AddressBookRepository>();
         }
+
+      
     }
 }
