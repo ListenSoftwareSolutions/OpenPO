@@ -15,7 +15,39 @@
         });
         return response;
     };
-    this.get = function () {
+    this.put = function (addressBook) {
+        var accesstoken = sessionStorage.getItem('accessToken');
+
+        var authHeaders = {};
+        if (accesstoken) {
+            authHeaders.Authorization = 'Bearer ' + accesstoken;
+        }
+        var response = $http({
+            url: "/api/people",
+            method: "PUT",
+            data: addressBook,
+            headers: authHeaders
+        });
+        return response;
+    };
+    this.get = function (id) {
+
+        var accesstoken = sessionStorage.getItem('accessToken');
+
+        var authHeaders = {};
+        if (accesstoken) {
+            authHeaders.Authorization = 'Bearer ' + accesstoken;
+        }
+
+        var response = $http({
+            url: "/api/people/" + id,
+            method: "GET",
+            headers: authHeaders
+        });
+        return response;
+    };
+
+    this.list = function () {
 
         var accesstoken = sessionStorage.getItem('accessToken');
 
@@ -41,10 +73,21 @@
 
     //loadPeople();
 
+    $scope.getPerson = function getPersion(id) {
+        var promise = AddressBookService.get(id);
+        promise.then(function (resp) {
+
+            $scope.Company = resp.data;
+            $scope.Message = "Call Completed Successfully";
+        }, function (err) {
+            $scope.Message = "Error!!! " + err.status
+        });
+    };
+
     $scope.loadPeople = function loadPeople() {
 
   
-        var promise = AddressBookService.get();
+        var promise = AddressBookService.list();
         promise.then(function (resp) {
             
             $scope.Companies = resp.data;
@@ -54,19 +97,28 @@
         });
     };
 
-    $scope.editPerson = function (addressId) {
-        window.location("/people/edit/" + addressId);
+    $scope.updatePerson = function (addressId) {
 
-    }
-
-    $scope.addPerson = function () {
-        var promise = AddressBookService.post($scope.addressBook);
+        var promise = AddressBookService.put($scope.addressBook);
         promise.then(function (resp) {
             $scope.Message = "Call Completed Successfully";
-            //window.location.path("/people");
+            window.location.path("/Home/company.cshtml");
         }, function (err) {
             $scope.Message = "Error!!! " + err.status
         });
+
+       // window.location("/people/edit/" + addressId);
+
     }
+
+        $scope.addPerson = function () {
+        var promise = AddressBookService.post($scope.addressBook);
+        promise.then(function (resp) {
+            $scope.Message = "Call Completed Successfully";
+            window.location.path("/Home/company.cshtml");
+        }, function (err) {
+            $scope.Message = "Error!!! " + err.status
+        });
+    };
    
 }]);

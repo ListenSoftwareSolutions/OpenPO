@@ -39,6 +39,11 @@ namespace OpenPO.Database
         public Nullable<long> PeopleXrefId { get; set; }
         public string ProductKey { get; set; }
         public string Email { get; set; }
+        public string Fax { get; set; }
+        public string ShippingAddress { get; set; }
+        public string ShippingCity { get; set; }
+        public string ShippingZipcode { get; set; }
+        public string ShippingState { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<POQuote> POQuotes { get; set; }

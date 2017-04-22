@@ -46,6 +46,11 @@
           <Property Name="PeopleXrefId" Type="bigint" />
           <Property Name="ProductKey" Type="varchar" MaxLength="100" />
           <Property Name="Email" Type="varchar" MaxLength="100" />
+          <Property Name="Fax" Type="varchar" MaxLength="50" />
+          <Property Name="ShippingAddress" Type="varchar" MaxLength="255" />
+          <Property Name="ShippingCity" Type="varchar" MaxLength="100" />
+          <Property Name="ShippingZipcode" Type="varchar" MaxLength="50" />
+          <Property Name="ShippingState" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Contract">
           <Key>
@@ -58,6 +63,16 @@
           <Property Name="EndDate" Type="datetime" />
           <Property Name="Cost" Type="money" />
           <Property Name="RemainingBalance" Type="money" />
+        </EntityType>
+        <EntityType Name="Equations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="equation" Type="varchar" MaxLength="255" />
+          <Property Name="queueid" Type="varchar" MaxLength="20" />
+          <Property Name="evaluated" Type="varchar" MaxLength="255" />
+          <Property Name="cellname" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="GeneralLedger">
           <Key>
@@ -139,6 +154,7 @@
           <EntitySet Name="AcctRec" EntityType="Self.AcctRec" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AddressBook" EntityType="Self.AddressBook" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Contract" EntityType="Self.Contract" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Equations" EntityType="Self.Equations" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GeneralLedger" EntityType="Self.GeneralLedger" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="POQuote" EntityType="Self.POQuote" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UDC" EntityType="Self.UDC" Schema="dbo" store:Type="Tables" />
@@ -203,6 +219,11 @@
           <NavigationProperty Name="POQuotes1" Relationship="Self.FK_Vendor" FromRole="AddressBook" ToRole="POQuote" />
           <Property Name="ProductKey" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Fax" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ShippingAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ShippingCity" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ShippingZipcode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ShippingState" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="GeneralLedger">
           <Key>
@@ -293,6 +314,7 @@
           </AssociationSet>
           <EntitySet Name="UDCs" EntityType="listensoftwareDBModel.UDC" />
           <EntitySet Name="Contracts" EntityType="listensoftwareDBModel.Contract" />
+          <EntitySet Name="Equations" EntityType="listensoftwareDBModel.Equation" />
         </EntityContainer>
         <EntityType Name="UDC">
           <Key>
@@ -314,6 +336,16 @@
           <Property Name="EndDate" Type="DateTime" Precision="3" />
           <Property Name="Cost" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="RemainingBalance" Type="Decimal" Precision="19" Scale="4" />
+        </EntityType>
+        <EntityType Name="Equation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="equation1" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="queueid" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="evaluated" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="cellname" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -344,6 +376,11 @@
           <EntitySetMapping Name="AddressBooks">
             <EntityTypeMapping TypeName="listensoftwareDBModel.AddressBook">
               <MappingFragment StoreEntitySet="AddressBook">
+                <ScalarProperty Name="ShippingState" ColumnName="ShippingState" />
+                <ScalarProperty Name="ShippingZipcode" ColumnName="ShippingZipcode" />
+                <ScalarProperty Name="ShippingCity" ColumnName="ShippingCity" />
+                <ScalarProperty Name="ShippingAddress" ColumnName="ShippingAddress" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="ProductKey" ColumnName="ProductKey" />
                 <ScalarProperty Name="AddressId" ColumnName="AddressId" />
@@ -418,6 +455,17 @@
                 <ScalarProperty Name="ServiceTypeXRefId" ColumnName="ServiceTypeXRefId" />
                 <ScalarProperty Name="AddressId" ColumnName="AddressId" />
                 <ScalarProperty Name="ContractId" ColumnName="ContractId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Equations">
+            <EntityTypeMapping TypeName="listensoftwareDBModel.Equation">
+              <MappingFragment StoreEntitySet="Equations">
+                <ScalarProperty Name="cellname" ColumnName="cellname" />
+                <ScalarProperty Name="evaluated" ColumnName="evaluated" />
+                <ScalarProperty Name="queueid" ColumnName="queueid" />
+                <ScalarProperty Name="equation1" ColumnName="equation" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

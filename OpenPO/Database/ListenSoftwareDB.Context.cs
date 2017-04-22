@@ -19,8 +19,9 @@ namespace OpenPO.Database
             : base("name=listensoftwareDBEntities")
         {
             this.Configuration.LazyLoadingEnabled = false;
+
         }
-    
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
@@ -32,5 +33,6 @@ namespace OpenPO.Database
         public virtual DbSet<POQuote> POQuotes { get; set; }
         public virtual DbSet<UDC> UDCs { get; set; }
         public virtual DbSet<Contract> Contracts { get; set; }
+        public virtual DbSet<Equation> Equations { get; set; }
     }
 }
