@@ -15,7 +15,7 @@ namespace OpenPO.Services
         List<AddressBook> GetPersonList(string keyCode);
         List<AddressBook> GetAllAddressBooks(string searchString, string keyCode);
     }
-    public class AddressBookRepository:IAddressBookRepository
+    public class AddressBookRepository : IAddressBookRepository
     {
         public void AddAddressBook(AddressBook addressBook)
         {
@@ -25,7 +25,7 @@ namespace OpenPO.Services
                 db.SaveChanges();
             }
         }
-       
+
         public void DeleteAddressBook(long paramAddressId)
         {
             using (var db = new listensoftwareDBEntities())
@@ -87,54 +87,65 @@ namespace OpenPO.Services
             List<AddressBook> resultList = new List<AddressBook>();
             UDCRepository udcRepository = new UDCRepository();
             long xRefId = udcRepository.GetUdcByKeyCode(keyCode);
-            using (var db = new listensoftwareDBEntities())
+            try
             {
-                var query = from b in db.AddressBooks
-                            .Where(b => b.PeopleXrefId == xRefId)
-                            select b;
-
-                query = query.OrderBy(s => s.Name);
-
-
-                foreach (var item in query)
+                using (var db = new listensoftwareDBEntities())
                 {
-                    resultList.Add(item);
+                    var query = from b in db.AddressBooks
+                                .Where(b => b.PeopleXrefId == xRefId)
+                                select b;
+
+                    query = query.OrderBy(s => s.Name);
+
+
+                    foreach (var item in query)
+                    {
+                        resultList.Add(item);
+                    }
+
+
                 }
-
-
             }
+            catch (Exception ex)
+            { }
             return (resultList);
         }
         public List<AddressBook> GetAllAddressBooks(string searchString, string keyCode)
         {
+
             List<AddressBook> resultList = new List<AddressBook>();
             UDCRepository udcRepository = new UDCRepository();
             long xRefId = udcRepository.GetUdcByKeyCode(keyCode);
-
-            using (var db = new listensoftwareDBEntities())
+            try
             {
-                var query = from b in db.AddressBooks
-                            .Where(b => b.PeopleXrefId == xRefId)
-                            select b;
-
-                if (!String.IsNullOrEmpty(searchString))
+                using (var db = new listensoftwareDBEntities())
                 {
-                    query = query.Where(s => s.Name.Contains(searchString) || s.FirstName.Contains(searchString) || s.LastName.Contains(searchString));
+                    var query = from b in db.AddressBooks
+                                .Where(b => b.PeopleXrefId == xRefId)
+                                select b;
 
+                    if (!String.IsNullOrEmpty(searchString))
+                    {
+                        query = query.Where(s => s.Name.Contains(searchString) || s.FirstName.Contains(searchString) || s.LastName.Contains(searchString));
+
+                    }
+
+                    query = query.OrderBy(s => s.Name);
+
+
+                    foreach (var item in query)
+                    {
+                        resultList.Add(item);
+                    }
                 }
-
-                query = query.OrderBy(s => s.Name);
-
-
-                foreach (var item in query)
-                {
-                    resultList.Add(item);
-                }
-
-
             }
+            catch (Exception ex)
+            {
+
+            }             
             return (resultList);
         }
-    } //end class
+           
+} //end class
    
 }

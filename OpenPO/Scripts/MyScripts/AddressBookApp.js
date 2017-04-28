@@ -15,7 +15,7 @@
         });
         return response;
     };
-    this.put = function (addressBook) {
+    this.put = function (addressId,addressBook) {
         var accesstoken = sessionStorage.getItem('accessToken');
 
         var authHeaders = {};
@@ -23,7 +23,7 @@
             authHeaders.Authorization = 'Bearer ' + accesstoken;
         }
         var response = $http({
-            url: "/api/people",
+            url: "/api/people/"+addressId,
             method: "PUT",
             data: addressBook,
             headers: authHeaders
@@ -73,12 +73,13 @@
 
     //loadPeople();
 
-    $scope.getPerson = function getPersion(id) {
+    $scope.getPerson = function getPerson(id) {
         var promise = AddressBookService.get(id);
         promise.then(function (resp) {
 
-            $scope.Company = resp.data;
-            $scope.Message = "Call Completed Successfully";
+            $scope.AddressBook = resp.data;
+            //alert($scope.AddressBook.name);
+            $scope.Message = "Call Completed Successfully"+$scope.AddressBook.name;
         }, function (err) {
             $scope.Message = "Error!!! " + err.status
         });
@@ -99,7 +100,7 @@
 
     $scope.updatePerson = function (addressId) {
 
-        var promise = AddressBookService.put($scope.addressBook);
+        var promise = AddressBookService.put(addressId,$scope.AddressBook);
         promise.then(function (resp) {
             $scope.Message = "Call Completed Successfully";
             window.location.path("/Home/company.cshtml");
@@ -112,7 +113,7 @@
     }
 
         $scope.addPerson = function () {
-        var promise = AddressBookService.post($scope.addressBook);
+        var promise = AddressBookService.post($scope.AddressBook);
         promise.then(function (resp) {
             $scope.Message = "Call Completed Successfully";
             window.location.path("/Home/company.cshtml");

@@ -45,7 +45,8 @@ namespace OpenPO.Controllers
         // GET: AddressBook/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            ViewBag.AddressId = id;
+            return View("editprofile");
         }
 
         // POST: AddressBook/Edit/5
