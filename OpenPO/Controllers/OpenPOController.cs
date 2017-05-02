@@ -13,7 +13,10 @@ namespace OpenPO.Controllers
         {
             return View();
         }
-
+        public ActionResult AccRec()
+        {
+            return View("AccRec");
+        }
         // GET: OpenPO/Details/5
         public ActionResult Details(int id)
         {

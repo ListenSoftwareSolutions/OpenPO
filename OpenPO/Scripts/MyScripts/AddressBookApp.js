@@ -30,6 +30,21 @@
         });
         return response;
     };
+    this.delete = function (addressId, addressBook) {
+        var accesstoken = sessionStorage.getItem('accessToken');
+
+        var authHeaders = {};
+        if (accesstoken) {
+            authHeaders.Authorization = 'Bearer ' + accesstoken;
+        }
+        var response = $http({
+            url: "/api/people/" + addressId,
+            method: "DELETE",
+            data: addressBook,
+            headers: authHeaders
+        });
+        return response;
+    };
     this.get = function (id) {
 
         var accesstoken = sessionStorage.getItem('accessToken');
@@ -109,6 +124,19 @@
         });
 
        // window.location("/people/edit/" + addressId);
+
+    }
+    $scope.deletePerson = function (addressId) {
+
+        var promise = AddressBookService.delete(addressId, $scope.AddressBook);
+        promise.then(function (resp) {
+            $scope.Message = "Call Completed Successfully";
+            window.location.path("/Home/company.cshtml");
+        }, function (err) {
+            $scope.Message = "Error!!! " + err.status
+        });
+
+        // window.location("/people/edit/" + addressId);
 
     }
 

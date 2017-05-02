@@ -17,6 +17,7 @@ namespace OpenPO
         {
             var container = new UnityContainer();
             container.RegisterType<IAddressBookRepository, AddressBookRepository>(new HierarchicalLifetimeManager());
+            container.RegisterType<IAcctRecRepository, AccountReceivableRepository>(new HierarchicalLifetimeManager());
             config.DependencyResolver = new UnityResolver(container);
             // Web API configuration and services
             // Configure Web API to use only bearer token authentication.

@@ -7,7 +7,7 @@ using System.Web.Http;
 
 namespace OpenPO.Controllers
 {
-    public class CalculatorController : ApiController
+    public class OpenPoApiController : ApiController
     {
         // GET api/<controller>
         public IEnumerable<string> Get()
@@ -24,7 +24,6 @@ namespace OpenPO.Controllers
         // POST api/<controller>
         public void Post([FromBody]string value)
         {
-
         }
 
         // PUT api/<controller>/5

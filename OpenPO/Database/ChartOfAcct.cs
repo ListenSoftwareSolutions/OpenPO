@@ -12,12 +12,15 @@ namespace OpenPO.Database
     using System;
     using System.Collections.Generic;
     
-    public partial class Equation
+    public partial class ChartOfAcct
     {
-        public long Id { get; set; }
-        public string equation1 { get; set; }
-        public string queueid { get; set; }
-        public string evaluated { get; set; }
-        public string cellname { get; set; }
+        public long AccountId { get; set; }
+        public string Location { get; set; }
+        public string BusUnit { get; set; }
+        public string Subsidiary { get; set; }
+        public string SubSub { get; set; }
+        public string Account { get; set; }
+        public string Description { get; set; }
+        public string CompanyNumber { get; set; }
     }
 }

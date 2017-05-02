@@ -286,53 +286,55 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AcctRecApiController.cs" />
     <Compile Include="Controllers\AddressBookController.cs" />
-    <Compile Include="Controllers\CalculatorApiController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\OpenPoApiController.cs" />
     <Compile Include="Controllers\OpenPOController.cs" />
     <Compile Include="Controllers\PeopleApiController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Database\AcctRec.cs">
-      <DependentUpon>ListenSoftwareDB.tt</DependentUpon>
+      <DependentUpon>ListensoftwareDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\AddressBook.cs">
-      <DependentUpon>ListenSoftwareDB.tt</DependentUpon>
+      <DependentUpon>ListensoftwareDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ChartOfAcct.cs">
+      <DependentUpon>ListensoftwareDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\Contract.cs">
-      <DependentUpon>ListenSoftwareDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Database\Equation.cs">
-      <DependentUpon>ListenSoftwareDB.tt</DependentUpon>
+      <DependentUpon>ListensoftwareDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\GeneralLedger.cs">
-      <DependentUpon>ListenSoftwareDB.tt</DependentUpon>
+      <DependentUpon>ListensoftwareDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Database\ListenSoftwareDB.Context.cs">
+    <Compile Include="Database\ListensoftwareDB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ListenSoftwareDB.Context.tt</DependentUpon>
+      <DependentUpon>ListensoftwareDB.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Database\ListenSoftwareDB.cs">
+    <Compile Include="Database\ListensoftwareDB.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ListenSoftwareDB.tt</DependentUpon>
+      <DependentUpon>ListensoftwareDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Database\ListenSoftwareDB.Designer.cs">
+    <Compile Include="Database\ListensoftwareDB.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ListenSoftwareDB.edmx</DependentUpon>
+      <DependentUpon>ListensoftwareDB.edmx</DependentUpon>
     </Compile>
     <Compile Include="Database\POQuote.cs">
-      <DependentUpon>ListenSoftwareDB.tt</DependentUpon>
+      <DependentUpon>ListensoftwareDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\UDC.cs">
-      <DependentUpon>ListenSoftwareDB.tt</DependentUpon>
+      <DependentUpon>ListensoftwareDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountBindingModels.cs" />
+    <Compile Include="Models\AccountReceivable.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -414,15 +416,15 @@
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tooltip.min.css" />
-    <Content Include="Database\ListenSoftwareDB.Context.tt">
+    <Content Include="Database\ListensoftwareDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ListenSoftwareDB.edmx</DependentUpon>
-      <LastGenOutput>ListenSoftwareDB.Context.cs</LastGenOutput>
+      <DependentUpon>ListensoftwareDB.edmx</DependentUpon>
+      <LastGenOutput>ListensoftwareDB.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Database\ListenSoftwareDB.tt">
+    <Content Include="Database\ListensoftwareDB.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ListenSoftwareDB.edmx</DependentUpon>
-      <LastGenOutput>ListenSoftwareDB.cs</LastGenOutput>
+      <DependentUpon>ListensoftwareDB.edmx</DependentUpon>
+      <LastGenOutput>ListensoftwareDB.cs</LastGenOutput>
     </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -449,13 +451,6 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <EntityDeploy Include="Database\ListenSoftwareDB.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ListenSoftwareDB.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Database\ListenSoftwareDB.edmx.diagram">
-      <DependentUpon>ListenSoftwareDB.edmx</DependentUpon>
-    </Content>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -464,6 +459,13 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <EntityDeploy Include="Database\ListensoftwareDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ListensoftwareDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Database\ListensoftwareDB.edmx.diagram">
+      <DependentUpon>ListensoftwareDB.edmx</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\OpenPO - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\OpenPO - Web Deploy.pubxml" />
     <Content Include="Scripts\angular-animate.js" />
@@ -755,9 +757,11 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\MyScripts\AccRecApp.js" />
     <Content Include="Scripts\MyScripts\AddressBookApp.js" />
     <Content Include="Scripts\MyScripts\app.js" />
     <Content Include="Scripts\MyScripts\Login.js" />
+    <Content Include="Scripts\MyScripts\OpenPoApp.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Views\Login\securityinfo.cshtml" />
@@ -785,6 +789,7 @@
     <Content Include="Views\AddressBook\profile.cshtml" />
     <Content Include="Views\AddressBook\registration.cshtml" />
     <Content Include="Views\AddressBook\EditProfile.cshtml" />
+    <Content Include="Views\OpenPO\AccRec.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

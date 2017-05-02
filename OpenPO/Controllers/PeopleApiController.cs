@@ -22,7 +22,7 @@ namespace OpenPO.Controllers
             _addressBookRepository = addressBookRepository;
         }
         // GET: api/People
-        [Authorize]
+        //[Authorize]
         public List<AddressBook> Get()
         {
             List<AddressBook> listPeople = _addressBookRepository.GetAllAddressBooks("", "customer");
@@ -30,7 +30,7 @@ namespace OpenPO.Controllers
             return listPeople;
     
         }
-        [Authorize]
+        //[Authorize]
         // GET: api/People/5
         public AddressBook Get(int id)
         {
@@ -38,13 +38,13 @@ namespace OpenPO.Controllers
 
             return person;
         }
-        [Authorize]
+        //[Authorize]
         // POST: api/People
         public void Post([FromBody]AddressBook addressBook)
         {
             _addressBookRepository.AddAddressBook(addressBook);
         }
-        [Authorize]
+        //[Authorize]
         // PUT: api/People/5
         public void Put(int id, [FromBody]AddressBook addressBook)
         {

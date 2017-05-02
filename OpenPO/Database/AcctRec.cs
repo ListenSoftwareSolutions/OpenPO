@@ -14,28 +14,20 @@ namespace OpenPO.Database
     
     public partial class AcctRec
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public AcctRec()
-        {
-            this.POQuotes = new HashSet<POQuote>();
-        }
-    
         public long Id { get; set; }
         public string DocType { get; set; }
-        public decimal OpenAmount { get; set; }
-        public System.DateTime DiscountDueDate { get; set; }
-        public System.DateTime GLDate { get; set; }
-        public System.DateTime InvoiceDate { get; set; }
-        public System.DateTime CreateDate { get; set; }
-        public long DocNumber { get; set; }
+        public Nullable<decimal> OpenAmount { get; set; }
+        public Nullable<System.DateTime> DiscountDueDate { get; set; }
+        public Nullable<System.DateTime> GLDate { get; set; }
+        public Nullable<System.DateTime> InvoiceDate { get; set; }
+        public Nullable<System.DateTime> CreateDate { get; set; }
+        public Nullable<long> DocNumber { get; set; }
         public string Remarks { get; set; }
         public string NetTerms { get; set; }
         public long AddressId { get; set; }
         public Nullable<long> ItemId { get; set; }
         public string SKU { get; set; }
         public string Description { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<POQuote> POQuotes { get; set; }
+        public string PONumber { get; set; }
     }
 }
