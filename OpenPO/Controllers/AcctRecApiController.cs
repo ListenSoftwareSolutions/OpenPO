@@ -39,13 +39,15 @@ namespace OpenPO.Controllers
         }
 
         // PUT api/<controller>/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, [FromBody]AcctRec acctrec)
         {
+            _acctRecRepository.UpdateAcctRec(acctrec);
         }
 
         // DELETE api/<controller>/5
         public void Delete(int id)
         {
+            _acctRecRepository.DeleteAcctRec(id);
         }
     }
 }

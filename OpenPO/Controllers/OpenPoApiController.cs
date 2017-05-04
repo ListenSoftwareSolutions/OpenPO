@@ -4,11 +4,24 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using OpenPO.Services;
+using OpenPO.Models;
+using OpenPO.Database;
 
 namespace OpenPO.Controllers
 {
-    public class OpenPoApiController : ApiController
+
+    [RoutePrefix("Api/OpenPO")]
+    public class OpenPoController : ApiController
     {
+
+        private IPOQuoteRepository _poQuoteRepository;
+
+        public OpenPoController(IPOQuoteRepository poQuoteRepository)
+        {
+            _poQuoteRepository = poQuoteRepository;
+
+        }
         // GET api/<controller>
         public IEnumerable<string> Get()
         {
@@ -16,24 +29,28 @@ namespace OpenPO.Controllers
         }
 
         // GET api/<controller>/5
-        public string Get(int id)
+        public PurchaseOrderQuote Get(int id)
         {
-            return "value";
+            return _poQuoteRepository.GetPOQuote(id);
+         
         }
 
         // POST api/<controller>
-        public void Post([FromBody]string value)
+        public void Post([FromBody]POQuote poquote)
         {
+            _poQuoteRepository.AddPOQuote(poquote);
         }
 
         // PUT api/<controller>/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, [FromBody]POQuote poquote)
         {
+            _poQuoteRepository.UpdatePOQuote(poquote);
         }
 
         // DELETE api/<controller>/5
         public void Delete(int id)
         {
+            _poQuoteRepository.DeletePOQuote(id);
         }
     }
 }
