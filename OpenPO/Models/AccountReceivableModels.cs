@@ -5,7 +5,7 @@ using System.Web;
 
 namespace OpenPO.Models
 {
-    public class AccountReceivable
+    public class AccountReceivableModels
     {
             public long AddressId { get; set; }
             public string Name { get; set; }

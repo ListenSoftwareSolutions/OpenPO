@@ -7,10 +7,12 @@ using System.Web.Http;
 using OpenPO.Services;
 using OpenPO.Database;
 using System.Data.Entity;
+using OpenPO.Models;
 
 namespace OpenPO.Controllers
 {
     [RoutePrefix("Api/People")]
+   // [RoutePrefix("Api/People")]
     public class PeopleController : ApiController
     {
         private IAddressBookRepository _addressBookRepository;
@@ -23,9 +25,9 @@ namespace OpenPO.Controllers
         }
         // GET: api/People
         //[Authorize]
-        public List<AddressBook> Get()
+        public List<AddressBookModels> Get()
         {
-            List<AddressBook> listPeople = _addressBookRepository.GetAllAddressBooks("", "customer");
+            List<AddressBookModels> listPeople = _addressBookRepository.GetAllAddressBooks("", "customer");
 
             return listPeople;
     
@@ -35,6 +37,16 @@ namespace OpenPO.Controllers
         public AddressBook Get(int id)
         {
             AddressBook person = _addressBookRepository.GetAddressBook(id);
+
+            return person;
+        }
+
+        //[ActionName("GetByUserName")]
+        // GET: api/People/GetByUserName
+        [HttpGet]
+        public AddressBook GetByUserName(string email)
+        {
+            AddressBook person = _addressBookRepository.GetByUserName(email);
 
             return person;
         }
@@ -50,7 +62,7 @@ namespace OpenPO.Controllers
         {
             _addressBookRepository.UpdateAddressBook(addressBook);
         }
-        [Authorize]
+        //[Authorize]
         // DELETE: api/People/5
         public void Delete(int id)
         {

@@ -3,12 +3,45 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using OpenPO.Database;
+using OpenPO.Models;
 
 namespace OpenPO.Services
 {
-    public class UDCRepository
+    public interface IUDCRepository
     {
-        public long GetUdcByKeyCode(string keyCode)
+        long GetUdcByKeyCode(string productCode, string keyCode);
+        UDC GetUdcById(long? id);
+        IEnumerable<ListBoxModels> GetUdcListBox(string product_code);
+        string GetUdcById(string product_code, long ? id);
+    }
+    public class UDCRepository : IUDCRepository
+    {
+        public string GetUdcById(string product_code, long ? id)
+        {
+            UDC udc;
+            string retVal="";
+            try
+            {
+                using (var db = new listensoftwareDBEntities())
+                {
+                    udc = (from p in db.UDCs
+                           where p.ProductCode == product_code
+                           && p.XRefId==id
+                           select p).FirstOrDefault();
+
+                    if (udc != null)
+                    {
+                        retVal = udc.Value;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return retVal;
+        }
+        public long GetUdcByKeyCode(string productCode,string keyCode)
         {
             UDC udc;
             long retVal = 0;
@@ -18,6 +51,7 @@ namespace OpenPO.Services
                 {
                     udc = (from p in db.UDCs
                            where p.KeyCode == keyCode
+                           && p.ProductCode==productCode
                            select p).FirstOrDefault();
 
                     if (udc != null)
@@ -52,27 +86,28 @@ namespace OpenPO.Services
             }
             return udc;
         }
-        public IEnumerable<UDC> GetUdcList(string product_code)
+        public IEnumerable<ListBoxModels> GetUdcListBox(string product_code)
         {
+            List<ListBoxModels> udc_list = new List<ListBoxModels>();
             try
             {
                 using (var db = new listensoftwareDBEntities())
                 {
 
-                    var udc_list = from p in db.UDCs
+                    udc_list = (from p in db.UDCs
                                    where p.ProductCode == product_code
                                    orderby p.KeyCode
-                                   select p;
-
-                    var x = udc_list.ToList<UDC>();
-
-                    return (x);
+                                   select new ListBoxModels {
+                                    label=p.Value,
+                                    id=p.XRefId
+                                   }).ToList<ListBoxModels>();
+                   
                 }
             }
             catch (Exception ex)
             {
             }
-            return (null);
+            return (udc_list);
         }
     }
 }

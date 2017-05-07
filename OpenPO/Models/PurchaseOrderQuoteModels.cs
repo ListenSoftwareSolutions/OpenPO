@@ -5,7 +5,7 @@ using System.Web;
 
 namespace OpenPO.Models
 {
-    public class PurchaseOrderQuote
+    public class PurchaseOrderQuoteModels
     {
         public long Id { get; set; }
         public Nullable<decimal> QuoteAmount { get; set; }

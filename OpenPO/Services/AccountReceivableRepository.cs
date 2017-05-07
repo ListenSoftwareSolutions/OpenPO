@@ -12,7 +12,7 @@ namespace OpenPO.Services
         void DeleteAcctRec(long paramId);
         void AddAcctRec(AcctRec acctrec);
         void UpdateAcctRec(AcctRec acctrec_update);
-        AccountReceivable GetAcctRec(long? paramId);
+        AccountReceivableModels GetAcctRec(long? paramId);
         List<AcctRec> GetAcctRecList();
 
     }
@@ -57,13 +57,13 @@ namespace OpenPO.Services
             {
             }
         }
-        public AccountReceivable GetAcctRec(long? paramId)
+        public AccountReceivableModels GetAcctRec(long? paramId)
         {
 
             // AcctRec acctrec = new AcctRec();
             // AddressBook ab = new AddressBook()
 
-            AccountReceivable acctrec = new AccountReceivable();
+            AccountReceivableModels acctrec = new AccountReceivableModels();
 
 
             try

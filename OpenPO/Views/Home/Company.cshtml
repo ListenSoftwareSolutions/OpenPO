@@ -1,5 +1,5 @@
 ﻿<div ng-app="AppAddressBookModule">
-    <div ng-controller="AddressBookController">
+    <div ng-controller="AddressBookController" ng-init="loadPeople()">
         <h4>Companies</h4>
         <input type="button" value="Load People" class="form-control btn btn-success"
                ng-click="loadPeople()" /><br />

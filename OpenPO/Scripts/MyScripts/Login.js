@@ -30,6 +30,23 @@
         });
         return resp;
     };
+
+    this.getProfile = function (userName) {
+
+        var accesstoken = sessionStorage.getItem('accessToken');
+
+        var authHeaders = {};
+        if (accesstoken) {
+            authHeaders.Authorization = 'Bearer ' + accesstoken;
+        }
+
+        var response = $http({
+            url: "/api/people/GetByUserName/" + userName+"/",
+            method: "GET",
+            headers: authHeaders
+        });
+        return response;
+    };
 })
 .controller('LoginController', ['$scope', 'loginService', function ($scope, loginService)
 {
@@ -85,6 +102,23 @@
         sessionStorage.setItem('refreshToken', null);
         window.location.href = '/Home/Index';
     }
+    function loadProfile(userName)
+    {
+        //window.location.href = '/Home/Index';
+        var promiseProfile = loginService.getProfile(userName);
+
+
+        promiseProfile.then(function (resp) {
+            //alert(resp.data.addressId);
+            sessionStorage.setItem('addressId', resp.data.addressId);
+            window.location.href = '/Home/Index';
+        }, function (err) {
+
+            $scope.responseData = "Error " + err.status;
+        });
+
+       
+    }
     //Function to Login. This will generate Token 
     $scope.login = function () {
         //This is the information to pass for token based authentication
@@ -105,7 +139,9 @@
             sessionStorage.setItem('userName', resp.data.userName);
             sessionStorage.setItem('accessToken', resp.data.access_token);
             sessionStorage.setItem('refreshToken', resp.data.refresh_token);
-            window.location.href = '/Home/Index';
+
+            loadProfile(resp.data.userName);
+           
         }, function (err) {
 
             $scope.responseData = "Error " + err.status;

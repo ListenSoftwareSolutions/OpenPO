@@ -19,6 +19,7 @@ namespace OpenPO
             container.RegisterType<IAddressBookRepository, AddressBookRepository>(new HierarchicalLifetimeManager());
             container.RegisterType<IAcctRecRepository, AccountReceivableRepository>(new HierarchicalLifetimeManager());
             container.RegisterType<IPOQuoteRepository, POQuoteRepository>(new HierarchicalLifetimeManager());
+            container.RegisterType<IUDCRepository, UDCRepository>(new HierarchicalLifetimeManager());
             config.DependencyResolver = new UnityResolver(container);
             // Web API configuration and services
             // Configure Web API to use only bearer token authentication.
@@ -30,10 +31,32 @@ namespace OpenPO
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
-            );
+              name: "DefaultApi",
+              routeTemplate: "api/{controller}/{id}",
+              defaults: new { id = RouteParameter.Optional }
+          );
+         
+
+            config.Routes.MapHttpRoute(
+                name: "AddressBookApi",
+                routeTemplate: "api/{controller}/{action}/{email}/"
+                , defaults: new
+                {
+                    email = RouteParameter.Optional
+                });
+
+            config.Routes.MapHttpRoute(
+                name: "UDCApi",
+                routeTemplate: "api/{controller}/{action}/{product_code}"
+                , defaults: new
+                {
+                    product_code = RouteParameter.Optional
+                });
+
+
+
+
+
         }
     }
 }

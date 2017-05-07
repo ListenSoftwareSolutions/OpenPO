@@ -27,7 +27,7 @@ namespace OpenPO.Controllers
         }
 
         // GET api/<controller>/5
-        public AccountReceivable Get(int id)
+        public AccountReceivableModels Get(int id)
         {
             return _acctRecRepository.GetAcctRec(id);
         }

@@ -12,8 +12,8 @@ namespace OpenPO.Services
         void DeletePOQuote(long paramId);
         void AddPOQuote(POQuote poquote);
         void UpdatePOQuote(POQuote poquote_update);
-        PurchaseOrderQuote GetPOQuote(long? paramId);
-        List<PurchaseOrderQuote> GetPOQuoteList();
+        PurchaseOrderQuoteModels GetPOQuote(long? paramId);
+        List<PurchaseOrderQuoteModels> GetPOQuoteList();
 
     }
     public class POQuoteRepository : IPOQuoteRepository
@@ -53,9 +53,9 @@ namespace OpenPO.Services
             {
             }
         }
-        public PurchaseOrderQuote GetPOQuote(long? paramId) {
+        public PurchaseOrderQuoteModels GetPOQuote(long? paramId) {
 
-            PurchaseOrderQuote poquote = new PurchaseOrderQuote();
+            PurchaseOrderQuoteModels poquote = new PurchaseOrderQuoteModels();
 
 
             try
@@ -111,9 +111,9 @@ namespace OpenPO.Services
 
             return (poquote);
         }
-        public List<PurchaseOrderQuote> GetPOQuoteList() {
+        public List<PurchaseOrderQuoteModels> GetPOQuoteList() {
 
-            List<PurchaseOrderQuote> poquoteList = new List<PurchaseOrderQuote>();
+            List<PurchaseOrderQuoteModels> poquoteList = new List<PurchaseOrderQuoteModels>();
 
 
             try
@@ -127,7 +127,7 @@ namespace OpenPO.Services
                                  join e2 in db.AddressBooks on
                                  e.VendorAddressId equals e2.AddressId
 
-                                 select new PurchaseOrderQuote
+                                 select new PurchaseOrderQuoteModels
                                  {
                                      CustomerName = e1.Name,
                                      SKU=e.SKU,
@@ -140,7 +140,7 @@ namespace OpenPO.Services
                                      VendorName = e2.Name
 
                                  }
-                            ).ToList<PurchaseOrderQuote>();
+                            ).ToList<PurchaseOrderQuoteModels>();
 
 
                     

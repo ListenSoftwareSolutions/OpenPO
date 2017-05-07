@@ -1,6 +1,6 @@
 ﻿<div ng-app="AppAddressBookModule">
     <div ng-controller="AddressBookController">
-        <h3>Add Person</h3>
+        <h3>Add Profile</h3>
         <form name="addAddressBook" >
 
             <div>Name: <input name="name" ng-model="AddressBook.Name" /></div>
@@ -17,9 +17,10 @@
 
             <div>
                 Type:
-                <select ng-model="AddressBook.Type">
-                    <option value="Customer" selected>Customer</option>
-                    <option value="Employee">Employee</option>
+                <select ng-model="AddressBook.PeopleXRefId">
+                    <option value="customer" selected>Customer</option>
+                    <option value="employee">Employee</option>
+                    <option value="vendor">Vendor</option>
                 </select>
             </div>
 

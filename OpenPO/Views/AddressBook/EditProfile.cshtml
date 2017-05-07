@@ -6,7 +6,7 @@
     @ViewBag.AddressId
 
 <div ng-app="AppAddressBookModule">
-    <div ng-controller="AddressBookController">
+    <div ng-controller="AddressBookController" ng-init="getPerson(@ViewBag.AddressId);">
         <h3>Edit Person</h3>
 
         
@@ -27,10 +27,13 @@
 
             <div>
                 Type:
-                <select ng-model="AddressBook.Type">
-                    <option value="Customer" selected>Customer</option>
-                    <option value="Employee">Employee</option>
+                <select ng-model="AddressBook.peopleXrefId" ng-options="i.id as i.label for i in UDCList track by i.id">
+                  
                 </select>
+                <!--
+                <option value="7" selected>Customer</option>
+                <option value="8">Vendor</option>
+                -->
             </div>
 
             <div><button ng-click="getPerson(@ViewBag.AddressId)">Get Person</button></div>

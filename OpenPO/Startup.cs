@@ -23,6 +23,9 @@ namespace OpenPO
           
 
             services.AddTransient<IAddressBookRepository, AddressBookRepository>();
+            services.AddTransient<IAcctRecRepository, AccountReceivableRepository>();
+            services.AddTransient<IPOQuoteRepository, POQuoteRepository>();
+            services.AddTransient<IUDCRepository, UDCRepository>();
         }
 
       
