@@ -159,7 +159,7 @@
         var promise = AddressBookService.delete(addressId, $scope.AddressBook);
         promise.then(function (resp) {
             $scope.Message = "Call Completed Successfully";
-            window.location.href = '/Home/Compnay';
+            window.location.href = '/Home/Company';
         }, function (err) {
             $scope.Message = "Error!!! " + err.status
         });
@@ -172,7 +172,7 @@
         var promise = AddressBookService.post($scope.AddressBook);
         promise.then(function (resp) {
             $scope.Message = "Call Completed Successfully";
-            window.location.href = '/Home/Compnay';
+            window.location.href = '/Home/Company';
         }, function (err) {
             $scope.Message = "Error!!! " + err.status
         });

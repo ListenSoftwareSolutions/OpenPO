@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "AcctPay";
+}
+
+<div ng-app="AppAcctPayModule">
+    <div ng-controller="AcctPayController" ng-init="initialize()">
+        <h3>Add Account Payable</h3>
+        <form name="addAcctPay">
+
+            <div>DocumentNumber: <input name="DocumentNumber" ng-model="AcctPay.DocumentNumber" /></div>
+            <div>Customer Id: <input name="AddressId" ng-model="AcctPay.AddressId" /></div>
+
+            <div><button ng-click="addAcctPay()">Submit</button></div>
+
+
+            {{Message}}
+
+        </form>
+    </div>
+</div>
+

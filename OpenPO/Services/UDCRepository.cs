@@ -22,7 +22,7 @@ namespace OpenPO.Services
             string retVal="";
             try
             {
-                using (var db = new listensoftwareDBEntities())
+                using (var db = new Entities())
                 {
                     udc = (from p in db.UDCs
                            where p.ProductCode == product_code
@@ -47,7 +47,7 @@ namespace OpenPO.Services
             long retVal = 0;
             try
             {
-                using (var db = new listensoftwareDBEntities())
+                using (var db = new Entities())
                 {
                     udc = (from p in db.UDCs
                            where p.KeyCode == keyCode
@@ -71,7 +71,7 @@ namespace OpenPO.Services
             UDC udc = null;
             try
             {
-                using (var db = new listensoftwareDBEntities())
+                using (var db = new Entities())
                 {
                     udc = (from p in db.UDCs
                            where p.XRefId == id
@@ -91,7 +91,7 @@ namespace OpenPO.Services
             List<ListBoxModels> udc_list = new List<ListBoxModels>();
             try
             {
-                using (var db = new listensoftwareDBEntities())
+                using (var db = new Entities())
                 {
 
                     udc_list = (from p in db.UDCs

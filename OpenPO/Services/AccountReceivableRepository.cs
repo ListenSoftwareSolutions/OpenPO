@@ -21,7 +21,7 @@ namespace OpenPO.Services
         public void DeleteAcctRec(long paramId)
         {
 
-            using (var db = new listensoftwareDBEntities())
+            using (var db = new Entities())
             {
                 var acctRecDelete = db.AcctRecs.Single(e => e.AddressId == paramId);
 
@@ -31,7 +31,7 @@ namespace OpenPO.Services
         }
         public void AddAcctRec(AcctRec acctrec)
         {
-            using (var db = new listensoftwareDBEntities())
+            using (var db = new Entities())
             {
                 db.AcctRecs.Add(acctrec);
                 db.SaveChanges();
@@ -41,7 +41,7 @@ namespace OpenPO.Services
         {
             try
             {
-                using (var db = new listensoftwareDBEntities())
+                using (var db = new Entities())
                 {
 
                     AcctRec original = new AcctRec { Id = acctrecUpdate.Id };   /// stub model, only has Id
@@ -68,7 +68,7 @@ namespace OpenPO.Services
 
             try
             {
-                using (var db = new listensoftwareDBEntities())
+                using (var db = new Entities())
                 {
 
                     //acctrec = db.AcctRecs.Single(e => e.Id == paramId);
@@ -125,7 +125,7 @@ namespace OpenPO.Services
 
             try
             {
-                using (var db = new listensoftwareDBEntities())
+                using (var db = new Entities())
                 {
                     var query = from b in db.AcctRecs
 

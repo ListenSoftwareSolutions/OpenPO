@@ -1,5 +1,5 @@
 ﻿<div ng-app="AppAddressBookModule">
-    <div ng-controller="AddressBookController">
+    <div ng-controller="AddressBookController" ng-init="getUDCList('AB_TYPE');">
         <h3>Add Profile</h3>
         <form name="addAddressBook" >
 
@@ -17,10 +17,7 @@
 
             <div>
                 Type:
-                <select ng-model="AddressBook.PeopleXRefId">
-                    <option value="customer" selected>Customer</option>
-                    <option value="employee">Employee</option>
-                    <option value="vendor">Vendor</option>
+                <select ng-model="AddressBook.PeopleXRefId" ng-options="i.id as i.label for i in UDCList track by i.id">
                 </select>
             </div>
 

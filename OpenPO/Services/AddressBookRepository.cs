@@ -21,7 +21,7 @@ namespace OpenPO.Services
     {
         public void AddAddressBook(AddressBook addressBook)
         {
-            using (var db = new listensoftwareDBEntities())
+            using (var db = new Entities())
             {
                 db.AddressBooks.Add(addressBook);
                 db.SaveChanges();
@@ -30,7 +30,7 @@ namespace OpenPO.Services
 
         public void DeleteAddressBook(long paramAddressId)
         {
-            using (var db = new listensoftwareDBEntities())
+            using (var db = new Entities())
             {
                 var addressBookDelete = db.AddressBooks.Single(e => e.AddressId == paramAddressId);
 
@@ -43,7 +43,7 @@ namespace OpenPO.Services
         {
             try
             {
-                using (var db = new listensoftwareDBEntities())
+                using (var db = new Entities())
                 {
 
                     AddressBook original = new AddressBook { AddressId = addressBookUpdate.AddressId };   /// stub model, only has Id
@@ -68,7 +68,7 @@ namespace OpenPO.Services
             try
             {
                 //resultList = new List<AddressBook>();
-                using (var db = new listensoftwareDBEntities())
+                using (var db = new Entities())
                 {
                 
                     item = db.AddressBooks.Single(e => e.AddressId == paramAddressId);
@@ -90,7 +90,7 @@ namespace OpenPO.Services
             try
             {
            
-                using (var db = new listensoftwareDBEntities())
+                using (var db = new Entities())
                 {
 
                     item = db.AddressBooks.Single(e => e.Email == userName);
@@ -112,7 +112,7 @@ namespace OpenPO.Services
             long xRefId = udcRepository.GetUdcByKeyCode("AB_Type", keyCode);
             try
             {
-                using (var db = new listensoftwareDBEntities())
+                using (var db = new Entities())
                 {
                     var query = (from b in db.AddressBooks
                                  join c in db.UDCs
@@ -183,7 +183,7 @@ namespace OpenPO.Services
             long xRefId = udcRepository.GetUdcByKeyCode("AB_Type", keyCode);
             try
             {
-                using (var db = new listensoftwareDBEntities())
+                using (var db = new Entities())
                 {
                     var query = (from b in db.AddressBooks
                                  join c in db.UDCs

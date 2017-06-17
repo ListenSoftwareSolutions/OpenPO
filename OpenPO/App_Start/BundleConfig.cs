@@ -11,17 +11,19 @@ namespace OpenPO
             /*Change ScriptBundle to Bundle to avoid minification*/
 
             bundles.Add(new Bundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js",
-                        "~/Scripts/MyScripts/AddressBookApp.js",
-                         "~/Scripts/MyScripts/Login.js",
-                        "~/Scripts/angular.min.js"));
-
-            bundles.Add(new ScriptBundle("~/bundles/angular").Include(
-                    "~/Scripts/angular.min.js",
-                    "~/Scripts/MyScripts/AddressBookApp.js",
+                 "~/Scripts/MyScripts/AddressBookApp.js",
+                    "~/Scripts/MyScripts/acctPayApp.js",
                     "~/Scripts/MyScripts/Module.js",
                     "~/Scripts/MyScripts/Login.js",
-                    "~/Scripts/MyScripts/App.js"
+                    "~/Scripts/MyScripts/App.js",
+                        "~/Scripts/jquery-{version}.js"
+                       
+                        //"~/Scripts/angular.min.js"
+                        ));
+
+            bundles.Add(new ScriptBundle("~/bundles/angular").Include(
+                    "~/Scripts/angular.min.js"
+                   
                     ));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're

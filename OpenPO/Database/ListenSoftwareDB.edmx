@@ -5,6 +5,29 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="listensoftwareDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AcctPay">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DocNumber" Type="bigint" />
+          <Property Name="DocType" Type="varchar" MaxLength="10" />
+          <Property Name="InvoiceNumber" Type="varchar" MaxLength="50" />
+          <Property Name="InvoiceAmount" Type="money" />
+          <Property Name="InvoiceDate" Type="datetime" />
+          <Property Name="PaymentTerms" Type="varchar" MaxLength="10" />
+          <Property Name="GrossAmount" Type="money" />
+          <Property Name="Remark" Type="varchar(max)" />
+          <Property Name="GLDate" Type="datetime" />
+          <Property Name="AccountNumber" Type="varchar" MaxLength="100" />
+          <Property Name="SupplierAddressId" Type="bigint" />
+          <Property Name="CustomerAddressId" Type="bigint" />
+          <Property Name="ContractId" Type="bigint" />
+          <Property Name="POQuoteId" Type="bigint" />
+          <Property Name="Description" Type="varchar" MaxLength="1000" />
+          <Property Name="ItemNumber" Type="bigint" />
+          <Property Name="PONumber" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="AcctRec">
           <Key>
             <PropertyRef Name="Id" />
@@ -93,6 +116,20 @@
           <Property Name="AddressId" Type="bigint" Nullable="false" />
           <Property Name="Comment" Type="varchar" MaxLength="255" />
         </EntityType>
+        <EntityType Name="Inventory">
+          <Key>
+            <PropertyRef Name="ItemId" />
+          </Key>
+          <Property Name="ItemId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ShortDescription" Type="varchar" MaxLength="100" />
+          <Property Name="LongDescription" Type="varchar" MaxLength="255" />
+          <Property Name="Remarks" Type="varchar" MaxLength="2000" />
+          <Property Name="UOM" Type="varchar" MaxLength="100" />
+          <Property Name="SKU" Type="varchar" MaxLength="100" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="ExtendedPrice" Type="money" />
+          <Property Name="AccountId" Type="bigint" />
+        </EntityType>
         <EntityType Name="POQuote">
           <Key>
             <PropertyRef Name="Id" />
@@ -107,6 +144,25 @@
           <Property Name="VendorAddressId" Type="bigint" Nullable="false" />
           <Property Name="SKU" Type="varchar" MaxLength="50" />
           <Property Name="Description" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="PurchaseOrder">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="POType" Type="varchar" MaxLength="10" />
+          <Property Name="PaymentTerms" Type="varchar" MaxLength="10" />
+          <Property Name="GrossAmount" Type="money" />
+          <Property Name="Remark" Type="varchar(max)" />
+          <Property Name="GLDate" Type="datetime" />
+          <Property Name="AccountNumber" Type="varchar" MaxLength="100" />
+          <Property Name="SupplierAddressId" Type="bigint" />
+          <Property Name="CustomerAddressId" Type="bigint" />
+          <Property Name="ContractId" Type="bigint" />
+          <Property Name="POQuoteId" Type="bigint" />
+          <Property Name="Description" Type="varchar" MaxLength="1000" />
+          <Property Name="ItemNumber" Type="bigint" />
+          <Property Name="PONumber" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="UDC">
           <Key>
@@ -142,12 +198,15 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="listensoftwareDBModelStoreContainer">
+          <EntitySet Name="AcctPay" EntityType="Self.AcctPay" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AcctRec" EntityType="Self.AcctRec" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AddressBook" EntityType="Self.AddressBook" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ChartOfAccts" EntityType="Self.ChartOfAccts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Contract" EntityType="Self.Contract" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GeneralLedger" EntityType="Self.GeneralLedger" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Inventory" EntityType="Self.Inventory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="POQuote" EntityType="Self.POQuote" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PurchaseOrder" EntityType="Self.PurchaseOrder" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UDC" EntityType="Self.UDC" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Customer" Association="Self.FK_Customer">
             <End Role="AddressBook" EntitySet="AddressBook" />
@@ -162,6 +221,29 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="listensoftwareDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AcctPay">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DocNumber" Type="Int64" />
+          <Property Name="DocType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="InvoiceNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="InvoiceAmount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="InvoiceDate" Type="DateTime" Precision="3" />
+          <Property Name="PaymentTerms" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="GrossAmount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="GLDate" Type="DateTime" Precision="3" />
+          <Property Name="AccountNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SupplierAddressId" Type="Int64" />
+          <Property Name="CustomerAddressId" Type="Int64" />
+          <Property Name="ContractId" Type="Int64" />
+          <Property Name="POQuoteId" Type="Int64" />
+          <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="ItemNumber" Type="Int64" />
+          <Property Name="PONumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="AcctRec">
           <Key>
             <PropertyRef Name="Id" />
@@ -252,6 +334,20 @@
           <Property Name="AddressId" Type="Int64" Nullable="false" />
           <Property Name="Comment" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="Inventory">
+          <Key>
+            <PropertyRef Name="ItemId" />
+          </Key>
+          <Property Name="ItemId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ShortDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="LongDescription" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Remarks" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="UOM" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SKU" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="ExtendedPrice" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="AccountId" Type="Int64" />
+        </EntityType>
         <EntityType Name="POQuote">
           <Key>
             <PropertyRef Name="Id" />
@@ -268,6 +364,15 @@
           <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="AddressBook" Relationship="Self.FK_Customer" FromRole="POQuote" ToRole="AddressBook" />
           <NavigationProperty Name="AddressBook1" Relationship="Self.FK_Vendor" FromRole="POQuote" ToRole="AddressBook" />
+        </EntityType>
+        <EntityType Name="UDC">
+          <Key>
+            <PropertyRef Name="XRefId" />
+          </Key>
+          <Property Name="XRefId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="KeyCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Value" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_Customer">
           <End Role="AddressBook" Type="Self.AddressBook" Multiplicity="1" />
@@ -293,13 +398,16 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="listensoftwareDBEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AcctPays" EntityType="Self.AcctPay" />
           <EntitySet Name="AcctRecs" EntityType="Self.AcctRec" />
           <EntitySet Name="AddressBooks" EntityType="Self.AddressBook" />
           <EntitySet Name="ChartOfAccts" EntityType="Self.ChartOfAcct" />
           <EntitySet Name="Contracts" EntityType="Self.Contract" />
           <EntitySet Name="GeneralLedgers" EntityType="Self.GeneralLedger" />
+          <EntitySet Name="Inventories" EntityType="Self.Inventory" />
           <EntitySet Name="POQuotes" EntityType="Self.POQuote" />
+          <EntitySet Name="UDCs" EntityType="Self.UDC" />
           <AssociationSet Name="FK_Customer" Association="Self.FK_Customer">
             <End Role="AddressBook" EntitySet="AddressBooks" />
             <End Role="POQuote" EntitySet="POQuotes" />
@@ -308,27 +416,60 @@
             <End Role="AddressBook" EntitySet="AddressBooks" />
             <End Role="POQuote" EntitySet="POQuotes" />
           </AssociationSet>
-          <EntitySet Name="UDCs" EntityType="listensoftwareDBModel.UDC" />
+          <EntitySet Name="PurchaseOrders" EntityType="listensoftwareDBModel.PurchaseOrder" />
         </EntityContainer>
-        <EntityType Name="UDC">
+        <EntityType Name="PurchaseOrder">
           <Key>
-            <PropertyRef Name="XRefId" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="XRefId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProductCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="KeyCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Value" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="POType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="PaymentTerms" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="GrossAmount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="GLDate" Type="DateTime" Precision="3" />
+          <Property Name="AccountNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SupplierAddressId" Type="Int64" />
+          <Property Name="CustomerAddressId" Type="Int64" />
+          <Property Name="ContractId" Type="Int64" />
+          <Property Name="POQuoteId" Type="Int64" />
+          <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="ItemNumber" Type="Int64" />
+          <Property Name="PONumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="listensoftwareDBModelStoreContainer" CdmEntityContainer="listensoftwareDBEntities1">
+        <EntityContainerMapping StorageEntityContainer="listensoftwareDBModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="AcctPays">
+            <EntityTypeMapping TypeName="listensoftwareDBModel.AcctPay">
+              <MappingFragment StoreEntitySet="AcctPay">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DocNumber" ColumnName="DocNumber" />
+                <ScalarProperty Name="DocType" ColumnName="DocType" />
+                <ScalarProperty Name="InvoiceNumber" ColumnName="InvoiceNumber" />
+                <ScalarProperty Name="InvoiceAmount" ColumnName="InvoiceAmount" />
+                <ScalarProperty Name="InvoiceDate" ColumnName="InvoiceDate" />
+                <ScalarProperty Name="PaymentTerms" ColumnName="PaymentTerms" />
+                <ScalarProperty Name="GrossAmount" ColumnName="GrossAmount" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="GLDate" ColumnName="GLDate" />
+                <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+                <ScalarProperty Name="SupplierAddressId" ColumnName="SupplierAddressId" />
+                <ScalarProperty Name="CustomerAddressId" ColumnName="CustomerAddressId" />
+                <ScalarProperty Name="ContractId" ColumnName="ContractId" />
+                <ScalarProperty Name="POQuoteId" ColumnName="POQuoteId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ItemNumber" ColumnName="ItemNumber" />
+                <ScalarProperty Name="PONumber" ColumnName="PONumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="AcctRecs">
             <EntityTypeMapping TypeName="listensoftwareDBModel.AcctRec">
               <MappingFragment StoreEntitySet="AcctRec">
-                <ScalarProperty Name="PONumber" ColumnName="PONumber" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="DocType" ColumnName="DocType" />
                 <ScalarProperty Name="OpenAmount" ColumnName="OpenAmount" />
@@ -343,6 +484,7 @@
                 <ScalarProperty Name="ItemId" ColumnName="ItemId" />
                 <ScalarProperty Name="SKU" ColumnName="SKU" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="PONumber" ColumnName="PONumber" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -418,6 +560,21 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Inventories">
+            <EntityTypeMapping TypeName="listensoftwareDBModel.Inventory">
+              <MappingFragment StoreEntitySet="Inventory">
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="ShortDescription" ColumnName="ShortDescription" />
+                <ScalarProperty Name="LongDescription" ColumnName="LongDescription" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="UOM" ColumnName="UOM" />
+                <ScalarProperty Name="SKU" ColumnName="SKU" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="ExtendedPrice" ColumnName="ExtendedPrice" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="POQuotes">
             <EntityTypeMapping TypeName="listensoftwareDBModel.POQuote">
               <MappingFragment StoreEntitySet="POQuote">
@@ -437,10 +594,30 @@
           <EntitySetMapping Name="UDCs">
             <EntityTypeMapping TypeName="listensoftwareDBModel.UDC">
               <MappingFragment StoreEntitySet="UDC">
-                <ScalarProperty Name="Value" ColumnName="Value" />
-                <ScalarProperty Name="KeyCode" ColumnName="KeyCode" />
-                <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
                 <ScalarProperty Name="XRefId" ColumnName="XRefId" />
+                <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+                <ScalarProperty Name="KeyCode" ColumnName="KeyCode" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PurchaseOrders">
+            <EntityTypeMapping TypeName="listensoftwareDBModel.PurchaseOrder">
+              <MappingFragment StoreEntitySet="PurchaseOrder">
+                <ScalarProperty Name="PONumber" ColumnName="PONumber" />
+                <ScalarProperty Name="ItemNumber" ColumnName="ItemNumber" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="POQuoteId" ColumnName="POQuoteId" />
+                <ScalarProperty Name="ContractId" ColumnName="ContractId" />
+                <ScalarProperty Name="CustomerAddressId" ColumnName="CustomerAddressId" />
+                <ScalarProperty Name="SupplierAddressId" ColumnName="SupplierAddressId" />
+                <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+                <ScalarProperty Name="GLDate" ColumnName="GLDate" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="GrossAmount" ColumnName="GrossAmount" />
+                <ScalarProperty Name="PaymentTerms" ColumnName="PaymentTerms" />
+                <ScalarProperty Name="POType" ColumnName="POType" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

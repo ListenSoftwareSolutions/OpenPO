@@ -13,9 +13,9 @@ namespace OpenPO.Controllers
         {
             return View();
         }
-        public ActionResult AccRec()
+        public ActionResult AcctPay()
         {
-            return View("AccRec");
+            return View("AcctPay");
         }
         // GET: OpenPO/Details/5
         public ActionResult Details(int id)

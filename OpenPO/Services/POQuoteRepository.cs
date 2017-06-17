@@ -19,7 +19,7 @@ namespace OpenPO.Services
     public class POQuoteRepository : IPOQuoteRepository
     {
         public void DeletePOQuote(long paramId) {
-            using (var db = new listensoftwareDBEntities())
+            using (var db = new Entities())
             {
                 var poquoteDelete = db.POQuotes.Single(e => e.Id == paramId);
 
@@ -28,7 +28,7 @@ namespace OpenPO.Services
             }
         }
         public void AddPOQuote(POQuote poquote) {
-            using (var db = new listensoftwareDBEntities())
+            using (var db = new Entities())
             {
                 db.POQuotes.Add(poquote);
                 db.SaveChanges();
@@ -37,7 +37,7 @@ namespace OpenPO.Services
         public void UpdatePOQuote(POQuote poquote_update) {
             try
             {
-                using (var db = new listensoftwareDBEntities())
+                using (var db = new Entities())
                 {
 
                     POQuote original = new POQuote { Id = poquote_update.Id };   /// stub model, only has Id
@@ -60,7 +60,7 @@ namespace OpenPO.Services
 
             try
             {
-                using (var db = new listensoftwareDBEntities())
+                using (var db = new Entities())
                 {
 
                     //acctrec = db.AcctRecs.Single(e => e.Id == paramId);
@@ -118,7 +118,7 @@ namespace OpenPO.Services
 
             try
             {
-                using (var db = new listensoftwareDBEntities())
+                using (var db = new Entities())
                 {
 
                     poquoteList = (from e in db.POQuotes
