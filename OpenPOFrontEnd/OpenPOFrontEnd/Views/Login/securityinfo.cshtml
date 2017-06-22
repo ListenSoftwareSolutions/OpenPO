@@ -1,0 +1,34 @@
+﻿<div ng-app="AppLoginModule">
+    <div ng-controller="LoginController">
+        <h4>Security Info</h4>
+                    <table class="table table-bordered table-striped table-condensed">
+                        <tr>
+                            <td>Email:</td>
+                            <td>
+                                <input type="text" class="form-control"
+                                       ng-model="userLoginEmail" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Password:</td>
+                            <td>
+                                <input type="password"
+                                       class="form-control"
+                                       ng-model="userLoginPassword" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <input type="button" value="Login" class="form-control btn btn-success"
+                                       ng-click="login()" />
+                                <span>{{responseData}}</span>
+                            </td>
+                        </tr>
+                    </table>
+            </div>
+</div>

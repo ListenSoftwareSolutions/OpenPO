@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenPO3", "OpenPO3\OpenPO3.csproj", "{F9A8D9D0-15E8-445F-8A5E-ECAFF8BBD89E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenPOFrontEnd", "..\OpenPOFrontEnd\OpenPOFrontEnd\OpenPOFrontEnd.csproj", "{1F009667-9838-4C26-8E39-E317B000E1C7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F9A8D9D0-15E8-445F-8A5E-ECAFF8BBD89E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9A8D9D0-15E8-445F-8A5E-ECAFF8BBD89E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9A8D9D0-15E8-445F-8A5E-ECAFF8BBD89E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9A8D9D0-15E8-445F-8A5E-ECAFF8BBD89E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F009667-9838-4C26-8E39-E317B000E1C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F009667-9838-4C26-8E39-E317B000E1C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F009667-9838-4C26-8E39-E317B000E1C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F009667-9838-4C26-8E39-E317B000E1C7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

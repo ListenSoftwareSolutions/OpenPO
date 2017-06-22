@@ -1,0 +1,29 @@
+﻿<div ng-app="AppAddressBookModule">
+    <div ng-controller="AddressBookController" ng-init="loadPeople()">
+        <h4>Companies</h4>
+        <input type="button" value="Load People" class="form-control btn btn-success"
+               ng-click="loadPeople()" /><br />
+        <span>{{responseData}}</span>
+        <span>{{Message}}</span>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Address Id</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="company in Companies">
+                    <td>{{company.addressId}}</td>
+                    <td>{{company.name}}</td>
+                    <td>{{company.email}}</td>
+                   <td><a href="/addressbook/edit/{{company.addressId}}">Edit</a></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
