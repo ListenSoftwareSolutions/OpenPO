@@ -7,13 +7,14 @@
      })
 .controller('MainController',['$scope', 'MainService', function ($scope, MainService) {
 
-    var promise=MainService.GetBook();
+    /*var promise=MainService.GetBook();
     promise.then(function(response)
     {
         $scope.addressbook = response.data;
     }, function (err) {
         $scope.message = "Error!!! " + err.status
     });
+    */
     var person = {
         firstName:"David",
         lastName: "Nishimoto",

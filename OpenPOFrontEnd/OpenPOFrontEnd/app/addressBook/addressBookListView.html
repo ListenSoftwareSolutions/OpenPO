@@ -1,0 +1,35 @@
+﻿<div ng-app="OpenPOModule">
+    <div class="container-fluid">
+
+        <div class="panel panel-primary">
+            <div class="panel-heading"
+                 style="font-size:large">
+                Companies
+            </div>
+        </div>
+        <input type="button" value="Load People" class="btn btn-primary"
+               ng-click="ViewModel.loadPeople()" /><br />
+          Message:<span>{{ViewModel.Message}}</span>
+
+        <table class="table" ng-controller="AddressBookController as ViewModel" ng-init="ViewModel.loadPeople()">
+            <thead>
+                <tr>
+                    <th>Address Id</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="company in ViewModel.Companies">
+                    <td>{{company.addressId}}</td>
+                    <td>{{company.name}}</td>
+                    <td>{{company.email}}</td>
+                    <td><a ui-sref="companyDetail({addressId:{{company.addressId}}})">Detail</a></td>
+                    <td><a ui-sref="companyEdit({addressId:{{company.addressId}}})">Edit</a></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+</div>

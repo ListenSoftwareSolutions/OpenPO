@@ -19,6 +19,7 @@ namespace OpenPO
             container.RegisterType<IAddressBookRepository, AddressBookRepository>(new HierarchicalLifetimeManager());
             container.RegisterType<IAcctRecRepository, AccountReceivableRepository>(new HierarchicalLifetimeManager());
             container.RegisterType<IPOQuoteRepository, POQuoteRepository>(new HierarchicalLifetimeManager());
+            container.RegisterType<IPurchaseOrderRepository, PurchaseOrderRepository>(new HierarchicalLifetimeManager());
             container.RegisterType<IUDCRepository, UDCRepository>(new HierarchicalLifetimeManager());
             config.DependencyResolver = new UnityResolver(container);
             // Web API configuration and services

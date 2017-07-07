@@ -1,0 +1,69 @@
+﻿<div ng-app="OpenPOModule">
+    <div class="panel-heading" style="font-size:large">{{ViewModel.title}}</div>
+
+    <div class="panel-body" ng-controller="AddressBookController as ViewModel" ng-init="ViewModel.getPerson();">
+       Params: {{$stateParams | json}}state{{$state.current}}
+
+        <form name="addAddressBook">
+            <div class="row">
+                <div class="col-md-2">Id:</div><div><input name="id" ng-model="ViewModel.AddressBook.addressId" /></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">Name:</div><div> <input name="name" ng-model="ViewModel.AddressBook.name" /></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">First Name:</div><div> <input name="FirstName" ng-model="ViewModel.AddressBook.firstName" /></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">Last Name:</div><div><input name="LastName" ng-model="ViewModel.AddressBook.lastName" /></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">Company:</div><div><input name="Company" ng-model="ViewModel.AddressBook.company" /></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">Cell Phone:</div><div><input name="CellPhone" ng-model="ViewModel.AddressBook.cellPhone" /></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">Fax:</div><div><input name="Fax" ng-model="ViewModel.AddressBook.fax" /></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">Shipping Address:</div><div><input name="BillingAddress" ng-model="ViewModel.AddressBook.shippingAddress" /></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">Shipping City:</div><div><input name="BillingCity" ng-model="ViewModel.AddressBook.shippingCity" /></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">Shipping State:</div><div><input name="BillingState" ng-model="ViewModel.AddressBook.shippingState" /></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">Shipping Zipcode:</div><div><input name="BillingZipCode" ng-model="ViewModel.AddressBook.shippingZipCode" /></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">Product Key:</div><div><input name="ProductKey" ng-model="ViewModel.AddressBook.productKey" /></div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2">
+                    Type:
+                </div>
+            </div>
+            <div class="row">
+                <div>
+                    <select ng-model="ViewModel.AddressBook.peopleXrefId" ng-options="i.id as i.label for i in UDCList track by i.id"></select>
+                    <!--
+                    <option value="7" selected>Customer</option>
+                    <option value="8">Vendor</option>
+                    -->
+                </div>
+            </div>
+
+            <div class="row">
+    
+                <button ng-click="ViewModel.getPerson(ViewModel.addressId)">Get Person</button>
+                <button ng-click="ViewModel.updatePerson(ViewModel.addressId)">Update</button>
+                <button ng-click="ViewModel.deletePerson(ViewModel.addressId)">Delete</button>
+                {{ViewModel.Message}}
+            </div>
+        </form>
+    </div>
+</div>

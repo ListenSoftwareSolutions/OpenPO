@@ -295,7 +295,7 @@
     <Compile Include="Controllers\OpenPoApiController.cs" />
     <Compile Include="Controllers\OpenPOController.cs" />
     <Compile Include="Controllers\PeopleApiController.cs" />
-    <Compile Include="Controllers\PurchaseOrderController.cs" />
+    <Compile Include="Controllers\PurchaseOrderApiController.cs" />
     <Compile Include="Controllers\UDCApiController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Database\AcctPay.cs">
@@ -352,6 +352,7 @@
     <Compile Include="Models\AddressBookModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ListBoxModels.cs" />
+    <Compile Include="Models\purchaseOrderModels.cs" />
     <Compile Include="Models\PurchaseOrderQuoteModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
@@ -371,6 +372,8 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\purchaseOrder.css" />
+    <Content Include="Content\select.css" />
+    <Content Include="Content\select.min.css" />
     <Content Include="Content\themes\base\images\animated-overlay.gif" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -483,6 +486,7 @@
     <Content Include="Database\listensoftwareDB.edmx.diagram">
       <DependentUpon>listensoftwareDB.edmx</DependentUpon>
     </Content>
+    <Content Include="Content\select.min.css.map" />
     <None Include="Properties\PublishProfiles\OpenPO - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\OpenPO - Web Deploy.pubxml" />
     <Content Include="Scripts\angular-animate.js" />
@@ -503,10 +507,14 @@
     <Content Include="Scripts\angular-touch.js" />
     <Content Include="Scripts\angular-touch.min.js" />
     <Content Include="Scripts\angular-ui-date.js" />
+    <Content Include="Scripts\angular-ui-router.js" />
+    <Content Include="Scripts\angular-ui-router.min.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
+    <Content Include="Scripts\AngularUI\ui-router.js" />
+    <Content Include="Scripts\AngularUI\ui-router.min.js" />
+    <Content Include="Scripts\date.js" />
     <Content Include="Scripts\errors.json" />
-    <Content Include="Scripts\angular.min.js.map" />
     <Content Include="Scripts\angular-touch.min.js.map" />
     <Content Include="Scripts\angular-sanitize.min.js.map" />
     <Content Include="Scripts\angular-route.min.js.map" />
@@ -514,6 +522,8 @@
     <Content Include="Scripts\angular-loader.min.js.map" />
     <Content Include="Scripts\angular-cookies.min.js.map" />
     <Content Include="Scripts\angular-animate.min.js.map" />
+    <Content Include="Scripts\angular.min.js.map" />
+    <Content Include="Scripts\date.js.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -782,6 +792,8 @@
     <Content Include="Scripts\MyScripts\OpenPoApp.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\select.js" />
+    <Content Include="Scripts\select.min.js" />
     <Content Include="Views\Login\securityinfo.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -809,6 +821,7 @@
     <Content Include="Views\AddressBook\EditProfile.cshtml" />
     <Content Include="Views\OpenPO\AcctPay.cshtml" />
     <Content Include="Views\Home\Vendor.cshtml" />
+    <Content Include="Scripts\select.min.js.map" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

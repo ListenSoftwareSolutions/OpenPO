@@ -3,41 +3,49 @@
 <html lang="en">
 <head>
     <script src="Scripts/angular.js"></script>
+    <script src="Scripts/angular-resource.js"></script>
+    <script src="Scripts/angular-route.js"></script>
     <meta charset="utf-8" />
     <title>Companies</title>
-    <script src="Scripts/MyScripts/AddressBookApp.js"></script>
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <link href="Content/app.css" rel="stylesheet" />
+    <script src="Scripts/MyScripts/OpenPoApp.js"></script>
+    <script src="Scripts/MyScripts/Common/Services/Common.Services.js"></script>
+    <script src="Scripts/MyScripts/Common/Services/AddressBookResource.js"></script>
 </head>
-<body >
-    
-    <div ng-app="AppAddressBookModule">
-        <div ng-controller="AddressBookController" ng-init="loadPeople()">
-            <h4>Companies</h4>
-            <input type="button" value="Load People" class="form-control btn btn-success"
-                   ng-click="loadPeople()" /><br />
-            <span>{{responseData}}</span>
-            <span>{{Message}}</span>
+<body ng-app="OpenPOModule">
+    <div class="container-fluid">
 
-            <table>
-                <thead>
-                    <tr>
-                        <th>Address Id</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="company in Companies">
-                        <td>{{company.addressId}}</td>
-                        <td>{{company.name}}</td>
-                        <td>{{company.email}}</td>
-                        <td><a href="app_companies_edit.html?addressid={{company.addressId}}">Edit</a></td>
-                    </tr>
-                </tbody>
-            </table>
-
+        <div class="panel panel-primary">
+            <div class="panel-heading"
+                 style="font-size:large">
+                Companies
+            </div>
         </div>
-    </div>
+        <input type="button" value="Load People" class="btn btn-primary"
+               ng-click="ViewModel.loadPeople()" /><br />
+        <span>{{responseData}}</span>
+        <span>{{Message}}</span>
 
+        <table class="table" ng-controller="AddressBookController as ViewModel" ng-init="ViewModel.loadPeople()">
+            <thead>
+                <tr>
+                    <th>Address Id</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="company in ViewModel.Companies">
+                    <td>{{company.addressId}}</td>
+                    <td>{{company.name}}</td>
+                    <td>{{company.email}}</td>
+                    <td><a href="app_companies_edit.html?addressid={{company.addressId}}">Edit</a></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
 
 </body>
 </html>

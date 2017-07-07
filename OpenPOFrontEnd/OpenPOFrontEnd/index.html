@@ -2,29 +2,57 @@
 
 <html lang="en">
 <head>
-    <script src="Scripts/angular.js"></script>
     <meta charset="utf-8" />
-    <title>TypeScript HTML App</title>
-    <link rel="stylesheet" href="app.css" type="text/css" />
+    <title>Companies</title>
+    <!--Angular-->
+    <script src="Scripts/jquery-1.9.1.js"></script>
+    <script src="Scripts/bootstrap.js"></script>
+    <script src="Scripts/angular.js"></script>
+    <script src="Scripts/angular-resource.js"></script>
+    <script src="Scripts/angular-ui-router.js"></script>
+    <!--Application Script-->
     <script src="app.js"></script>
-    <script src="Scripts/MainController.js"></script>
-</head>
-<body >
+        
+
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <link href="Content/app.css" rel="stylesheet" />
+    <!--Controllers-->
+    <script src="Scripts/MyScripts/Common/Services/Common.Services.js"></script>
+    <script src="Scripts/MyScripts/Common/Services/AddressBookResource.js"></script>
+   <script src="Scripts/MyScripts/OpenPoApp.js"></script>
+    <script src="Scripts/MyScripts/AddressBookDetailController.js"></script>
     
-    <div ng-app="AppMainModule">
-        <div ng-controller="MainController">
-            <h1>TypeScript HTML App</h1>
-            {{843/42}}
-            <h1>{{message}}</h1>
-            <div>
-                <div>First Name: {{person.firstName}}</div>
-                <div>Last Name: {{person.lastName}}</div>
-                <div>
-                    <img ng-src="{{person.imagesrc}}" width="300px" />
+</head>
+<body ng-app="OpenPOModule" >
+    <div class="container-fluid" >
+        <nav class="navbar navbar-inverse">
+            <div class="container">
+
+                <a ui-sref="home" class="navbar-brand">Listen Software Solutions</a>
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a ui-sref="companies">Company List</a></li>
+                        <li><a ui-sref="companyEdit({addressId:0})"><i class="glyphicon glyphicon-plus"></i>Add Company</a></li>
+                    </ul>
                 </div>
             </div>
-        </div>
-        <div id="content"></div>
-    </div>
+
+        </nav>
+        
+            <a ui-sref="hello" ui-sref-active="active">Hello</a>
+            <ui-view></ui-view>
+
+
+</div>
+   
+
 </body>
 </html>
