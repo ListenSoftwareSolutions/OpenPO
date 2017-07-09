@@ -4,12 +4,12 @@
     angular.module("OpenPOModule");
    
     
-    app.controller('AddressBookDetailController', ['AddressBook',AddressBookDetailController]);
-
+    app.controller('AddressBookDetailController',['AddressBook',AddressBookDetailController]);
+    
     function AddressBookDetailController (AddressBook) {
         var ViewModel = this;
         ViewModel.AddressBook = AddressBook;
-        ViewModel.title = "Edit Address Book";
+        ViewModel.title = "Display Address Book";
 
         ViewModel.Message = "";
         //ViewModel.userName = sessionStorage.getItem('userName');
