@@ -5,8 +5,7 @@
         , ["ui.router"]
     );
     app.service('GetAddressBookService', ['$http', '$q', function ($http, $q) {
-    //app.service('GetAddressBookService', ['$http', function ($http) {
-       
+      
         var service = {
             AddressBook: [],
             get: get
@@ -35,10 +34,6 @@
                 deferred.reject(msg);
             });
   
-            //.error(function (msg) {
- //               deferred.reject(msg);
-           // });
-
             return deferred.promise;
          
         } //end get
@@ -157,98 +152,11 @@
                  return GetAddressBookService.get(addressId).then(function (resp) {
                     return resp.data;
                 })
-                //return GetAddressBookService.get(addressId);
-                //return GetAddressBookService.get(addressId).$promise.then(function (resp) {
-                //    return resp.data;
-                //})
-                //return(GetAddressBookService.get(addressId).$promise);
-                /*
-                var promise = GetAddressBookService.get(addressId);
-                promise.then(function (resp) {
-                    return resp.data;
-                })
-                */
+               
             }
         }
       
-        /*
-        var factoryReturn = {
-                 getAddressBook: getAddressBook
-        }
-        return factoryReturn;
-
-        function getAddressBook(addressId)
-        {
-            var promise = AddressBookService.get(addressId);
-            promise.then(function (resp) {
-                return factoryReturn=resp.data;
-
-            });
-        }
-*/
-
-    //app.factory('AddressBookResource', ['$resource', AddressBookResource]);
-    //function AddressBookResource($resource){
-
         
-/*
-        //worked
-        var promise = AddressBookService.get(2);
-        promise.then(function (resp) {
-            return resp.data;
-        
-        });
-*/
-        
-
-        //(failed)var ab = AddressBookService.get(2).$promise;
-
-        //var factory = {};
-        
-        //return {
-            //get: function (addressId)
-            //{
-                //return (AddressBookService.get(addressId));
-                /*
-                var promise = AddressBookService.get(addressId);
-                promise.then(function (resp) {
-                    return resp.data;
-                });
-                */
-
-/*
-                AddressBookService.get(addressId,
-                        function (data) {
-                            return(data);
-                        });
-*/
-                //return AddressBookService.get(addressId);
-           // }
-        //}
-        
-        /*
-        factory.get = function (addressIdParam) {
-            var AddressBook = $resource('http://localhost:51829/api/people', { userId: '@id' });
-            AddressBook.get({ addressId: addressBookParam }, function (ab) {
-                //user.abc = true;
-                ab.$save(ab);
-            });
-            //failed: return AddressBookService.get(addressId).$promise;
-            //return (addressId);
-        }
-        */
-        /*
-        return{
-            getAccountDetails: $resource(XXX, {}, {
-                getAccountDetailsService: {}
-            }),
-            getAccountInformation: function($scope, number, transaction, index){
-                AccountService.getAccountDetails.getAccountDetailsService({number : number})
-               .$promise.then(function(response){});       
-            }
-        */
-       
-        //return factory;
     };
 
 
@@ -272,30 +180,10 @@
                         var addressIdParam = $stateParams.addressId;
 
                         return (AddressBookResource.get(addressIdParam));
-                        /*
-                        AddressBookResource.get({ addressId: addressIdParam }).then
-                        (function (resp) {
-                            return resp.data
-                        });
-*/
+                      
 
                     }
-                    /*
-                    AddressBookService: "AddressBookService",
-                    AddressBook: function(AddressBookService, $stateParams)
-                    {
-                      
-                        //return AddressBookService.get(addressIdParam).$promise;
-                   
-                        var promise = AddressBookService.get(addressIdParam);
-                        promise.then
-                        (function (resp) {
-                            return resp.data;
 
-                        });
-                       
-                     }
-                    */
                        /*
                         var addressBookTemp = {
                             addressId: "2",
@@ -305,42 +193,8 @@
                         };
                         return addressBookTemp;
                         */
-                     
-                        //var addressIdParam = $stateParams.addressId;
-                        //return AddressBookResource.get({ addressId: addressIdParam });
-                        //return addressBookTemp;
-                    //}
-                    /*
-                    AddressBookResource: "AddressBookResource",
-
-                    AddressBook: function (AddressBookResource, $stateParams) {
-
-                        var addressIdParam = $stateParams.addressId;
-                        
-                        var addressBookTemp = {
-                            addressId: "2",
-                            Name: "David Nishimoto",
-                            FirstName: "David",
-                            LastName: "Nishimoto"
-                        };
-                        return addressBookTemp;
-                 
-                        var AddressBook = "Hello World";
-                        //return AddressBookResource.get({ addressId: addressIdParam }).$promise;
-                   
-                        var promise = AddressBookResource.get({ addressId: addressIdParam });
-                        promise.then(function (resp) {
-                            return resp.data;
-                        });
-                        
-                        AddressBookResource.get({ addressId: addressIdParam }).then(
-                            function (response) {
-                                return response.data
-                            })
-                    }
-
-                            */
-                            
+                       //}
+          
 
                 }
 
@@ -358,7 +212,63 @@
                 name: "companyEdit",
                 url: "/companies/edit/:addressId",
                 templateUrl: "app/addressBook/addressBookEditView.html",
-                controller: "AddressBookController as ViewModel"
+                controller: "AddressBookEditController as ViewModel",
+                controllerAs: "ViewModel",
+                resolve: {
+
+                    AddressBookResource: "AddressBookResource",
+                    AddressBook: function (AddressBookResource, $stateParams) {
+                        var addressIdParam = $stateParams.addressId;
+
+                        return (AddressBookResource.get(addressIdParam));
+
+
+                    }
+
+                    /*
+                     var addressBookTemp = {
+                         addressId: "2",
+                         name: "David Nishimoto",
+                         firstName: "David",
+                         lastName: "Nishimoto"
+                     };
+                     return addressBookTemp;
+                     */
+                    //}
+
+
+                }
+            }
+            var companyUpdate = {
+                name: "companyUpdate",
+                url: "/companies/save/AddressBook",
+                templateUrl: "app/addressBook/addressBookEditView.html",
+                controller: "AddressBookSaveController as ViewModel",
+                controllerAs: "ViewModel",
+                resolve: {
+
+                    AddressBookResource: "AddressBookResource",
+                    AddressBook: function (AddressBookResource, $stateParams) {
+                        var addressIdParam = $stateParams.addressId;
+
+                        return (AddressBookResource.get(addressIdParam));
+
+
+                    }
+
+                    /*
+                     var addressBookTemp = {
+                         addressId: "2",
+                         name: "David Nishimoto",
+                         firstName: "David",
+                         lastName: "Nishimoto"
+                     };
+                     return addressBookTemp;
+                     */
+                    //}
+
+
+                }
             }
 
             var purchaseorder = {
@@ -385,6 +295,7 @@
             $stateProvider.state(home);
             $stateProvider.state(helloState);
             $stateProvider.state(companyEdit);
+            $stateProvider.state(companyUpdate);
             $stateProvider.state(companyDetail);
 
         }])

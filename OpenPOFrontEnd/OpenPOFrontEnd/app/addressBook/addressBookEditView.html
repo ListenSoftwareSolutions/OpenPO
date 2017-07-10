@@ -1,8 +1,6 @@
-﻿<div ng-app="OpenPOModule">
-    <div class="panel-heading" style="font-size:large">{{ViewModel.title}}</div>
+﻿    <div class="panel-heading" style="font-size:large">{{ViewModel.title}}</div>
 
-    <div class="panel-body" ng-controller="AddressBookController as ViewModel" ng-init="ViewModel.getPerson();">
-       Params: {{$stateParams | json}}state{{$state.current}}
+    <div class="panel-body" >
 
         <form name="addAddressBook">
             <div class="row">
@@ -59,11 +57,12 @@
 
             <div class="row">
     
-                <button ng-click="ViewModel.getPerson(ViewModel.addressId)">Get Person</button>
-                <button ng-click="ViewModel.updatePerson(ViewModel.addressId)">Update</button>
-                <button ng-click="ViewModel.deletePerson(ViewModel.addressId)">Delete</button>
+
+
+                <a class="btn btn-primary" ui-sref="companyUpdate()">Update</a>   <a class="btn btn-default" ui-sref="companyDelete({addressId:{{company.addressId}}})">Delete</a>
+                
                 {{ViewModel.Message}}
             </div>
         </form>
     </div>
-</div>
+

@@ -81,6 +81,7 @@
     <Content Include="Scripts\MyScripts\AcctPayApp.js" />
     <Content Include="Scripts\MyScripts\AcctRecApp.js" />
     <Content Include="Scripts\MyScripts\AddressBookDetailController.js" />
+    <Content Include="Scripts\MyScripts\AddressBookEditController.js" />
     <Content Include="Scripts\MyScripts\obsolete_App.js" />
     <Content Include="Scripts\MyScripts\app_routing.js" />
     <Content Include="Scripts\MyScripts\Common\Services\AddressBookResource.js" />
