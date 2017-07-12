@@ -220,7 +220,11 @@
                     AddressBook: function (AddressBookResource, $stateParams) {
                         var addressIdParam = $stateParams.addressId;
 
-                        return (AddressBookResource.get(addressIdParam));
+                        if (addressIdParam!=0)
+                        {
+                            return(AddressBookResource.get(addressIdParam));
+                        }
+                        return (null);
 
 
                     }
