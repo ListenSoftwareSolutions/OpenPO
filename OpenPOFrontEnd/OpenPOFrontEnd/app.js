@@ -2,7 +2,7 @@
 
     "use strict";
     var app = angular.module("OpenPOModule"
-        , ["ui.router"]
+        , ["ui.router","ui.mask"]
     );
     app.service('AddressBookService', function ($http) {
         this.get = function (id) {

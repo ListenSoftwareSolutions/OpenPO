@@ -1,35 +1,32 @@
 ﻿<div class="panel panel-primary">
     <div class="panel-heading" style="font-size:large">{{ViewModel.title}}</div>
-    <div class="panel-body" >
-        <form name="addAddressBook">
-            <div class="row"><div class="col-md-2">Id:</div><div class="col-md-6"> {{ViewModel.AddressBook.addressId}}</div></div>
-
-            <div class="row">
-                <div class="col-md-2">Type:</div><div class="col-md-6">
-                    <div class="row"><div class="col-md-2">Name:</div><div class="col-md-6"> {{ViewModel.AddressBook.name}}</div></div>
-                    <div class="row"><div class="col-md-2">First Name:</div><div class="col-md-6"> {{ViewModel.AddressBook.firstName}}</div></div>
-                    <div class="row"><div class="col-md-2">Last Name:</div><div class="col-md-6">{{ViewModel.AddressBook.lastName}}</div></div>
-                    <div class="row"><div class="col-md-2">Company:</div><div class="col-md-6">{{ViewModel.AddressBook.company}}</div></div>
-                    <div class="row"><div class="col-md-2">Cell Phone:</div><div class="col-md-6">{{ViewModel.AddressBook.cellPhone}}</div></div>
-                    <div class="row"><div class="col-md-2">Fax:</div><div class="col-md-6">{{ViewModel.AddressBook.fax}}</div></div>
-                    <div class="row"><div class="col-md-2">Shipping Address:</div><div class="col-md-6">{{ViewModel.AddressBook.shippingAddress}}</div></div>
-                    <div class="row"><div class="col-md-2">Shipping City:</div><div class="col-md-6">{{ViewModel.AddressBook.shippingCity}}</div></div>
-                    <div class="row"><div class="col-md-2">Shipping State:</div><div class="col-md-6">{{ViewModel.AddressBook.shippingState}}</div></div>
-                    <div class="row"><div class="col-md-2">Shipping Zipcode:</div><div class="col-md-6">{{ViewModel.AddressBook.shippingZipCode}}</div></div>
-                    <div class="row"><div class="col-md-2">Product Key:</div><div class="col-md-6">{{ViewModel.AddressBook.productKey}}</div></div>
-
-                    {{ViewModel.AddressBook.peopleXrefId}}
-                </div>
+    <div class="panel-body">
+        <div role="form">
+            <div class="form-group" name="addAddressBook">
+                <div class="row"><div class="col-md-4">Id:</div><div class="col-md-8"> {{ViewModel.AddressBook.addressId}}</div></div>
+                <div class="row"><div class="col-md-4">Type:</div><div class="col-md-8">{{ViewModel.AddressBook.peopleXrefId}}</div></div>
+                <div class="row"><div class="col-md-4">Name:</div><div class="col-md-8"> {{ViewModel.AddressBook.name}}</div></div>
+                <div class="row"><div class="col-md-4">First Name:</div><div class="col-md-8"> {{ViewModel.AddressBook.firstName}}</div></div>
+                <div class="row"><div class="col-md-4">Last Name:</div><div class="col-md-8">{{ViewModel.AddressBook.lastName}}</div></div>
+                <div class="row"><div class="col-md-4">Company:</div><div class="col-md-8">{{ViewModel.AddressBook.company}}</div></div>
+                <div class="row"><div class="col-md-4">Cell Phone:</div><div class="col-md-8">{{ViewModel.AddressBook.cellPhone}}</div></div>
+                <div class="row"><div class="col-md-4">Fax:</div><div class="col-md-8">{{ViewModel.AddressBook.fax}}</div></div>
+                <div class="row"><div class="col-md-4">Shipping Address:</div><div class="col-md-8">{{ViewModel.AddressBook.shippingAddress}}</div></div>
+                <div class="row"><div class="col-md-4">Shipping City:</div><div class="col-md-8">{{ViewModel.AddressBook.shippingCity}}</div></div>
+                <div class="row"><div class="col-md-4">Shipping State:</div><div class="col-md-8">{{ViewModel.AddressBook.shippingState}}</div></div>
+                <div class="row"><div class="col-md-4">Shipping Zipcode:</div><div class="col-md-8">{{ViewModel.AddressBook.shippingZipCode}}</div></div>
+                <div class="row"><div class="col-md-4">Product Key:</div><div class="col-md-8">{{ViewModel.AddressBook.productKey}}</div></div>
             </div>
-            <div class="panel-footer">
-                <div class="row"><a class="btn btn-default" ui-sref="companies"><i class="glyphicon glyphicon chevron-left"></i>Back</a></div>
-                <div class="row"><a class="btn btn-primary" ui-sref="companyEdit({addressId:ViewModel.AddressBook.addressId})">Edit</a></div>
-                <div class="row">
-                    {{ViewModel.Message}}
-                </div>
-            </div>
-
-        </form>
-
+        </div>
     </div>
+        <div class="panel-footer">
+            <div class="row"><a class="btn btn-default" ui-sref="companies"><i class="glyphicon glyphicon chevron-left"></i>Back</a></div>
+            <div class="row"><a class="btn btn-primary" ui-sref="companyEdit({addressId:ViewModel.AddressBook.addressId})">Edit</a></div>
+            <div class="row">
+                {{ViewModel.Message}}
+            </div>
+        </div>
+    
 </div>
+
+    
