@@ -4,41 +4,6 @@
     var app = angular.module("OpenPOModule"
         , ["ui.router"]
     );
-    app.service('GetAddressBookService', ['$http', '$q', function ($http, $q) {
-      
-        var service = {
-            AddressBook: [],
-            get: get
-        };
-        return service;
-
-        function get(id) {
-            var accesstoken = sessionStorage.getItem('accessToken');
-
-            var authHeaders = {};
-            if (accesstoken) {
-                authHeaders.Authorization = 'Bearer ' + accesstoken;
-            }
-            var deferred = $q.defer();
-
-            $http({
-                url: "http://localhost:51829/api/people/" + id,
-                method: "GET",
-                headers: authHeaders
-            }).then(function (HttpData) {
-                service.AddressBook = HttpData.data
-                console.log(service.AddressBook);
-                deferred.resolve(HttpData);
-            },function(msg) {
-                console.log(msg);
-                deferred.reject(msg);
-            });
-  
-            return deferred.promise;
-         
-        } //end get
-       
-    }]);
     app.service('AddressBookService', function ($http) {
         this.get = function (id) {
 
@@ -101,7 +66,7 @@
             });
             return response;
         };
-        this.list = function () {
+        this.getList = function () {
 
             var accesstoken = sessionStorage.getItem('accessToken');
 
@@ -133,29 +98,31 @@
                 headers: authHeaders
             })
             .success(function (data) {
-            deferred.resolve(data);
+                deferred.resolve(data);
             }).error(function (msg) {
-            deferred.reject(msg);
+                deferred.reject(msg);
             });
 
             return deferred.promise;
 
-           
+
             //return response;
         };
     });
-
-    app.factory('AddressBookResource', ['GetAddressBookService', AddressBookResource]);
-    function AddressBookResource(GetAddressBookService) {
+    app.factory('AddressBookResource', ['AddressBookService', AddressBookResource]);
+    function AddressBookResource(AddressBookService) {
         return {
             get: function (addressId) {
-                 return GetAddressBookService.get(addressId).then(function (resp) {
+                return AddressBookService.get(addressId).then(function (resp) {
                     return resp.data;
-                })
-               
+                });
+            }//end get
+            ,getList: function () {
+            return AddressBookService.getList().then(function (resp) {
+                return resp.data;
+            });
             }
         }
-      
         
     };
 
@@ -205,7 +172,16 @@
                 name: "companies",
                 url: "/companies",
                 templateUrl: "app/addressBook/addressBookListView.html",
-                controller: "AddressBookController as ViewModel"
+                controller: "AddressBookListController",
+                controllerAs:"ViewModel",
+                resolve: {
+
+                AddressBookResource: "AddressBookResource",
+                Companies: function (AddressBookResource, $stateParams) {
+
+                    return (AddressBookResource.getList());
+                    }
+                }
             };
 
             var companyEdit = {
