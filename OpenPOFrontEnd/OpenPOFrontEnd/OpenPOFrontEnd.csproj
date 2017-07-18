@@ -29,6 +29,7 @@
     <Content Include="app.js" />
     <Content Include="app\addressBook\addressBookListView.html" />
     <Content Include="app\addressBook\addressBookListView_temp.html" />
+    <Content Include="app\purchaseOrder\PurchaseOrderListView.html" />
     <Content Include="app\purchaseOrder\purchaseOrderView.html" />
     <Content Include="app\welcomeView.html" />
     <Content Include="app_companies.html" />
@@ -106,6 +107,7 @@
     <Content Include="Scripts\MyScripts\Login.js" />
     <Content Include="Scripts\MyScripts\OpenPOApp.js" />
     <Content Include="Scripts\MyScripts\PurchaseOrderApp.js" />
+    <Content Include="Scripts\MyScripts\PurchaseOrderListController.js" />
     <Content Include="Scripts\patterns.js" />
     <Content Include="Scripts\select.js" />
     <Content Include="Scripts\select.min.js" />

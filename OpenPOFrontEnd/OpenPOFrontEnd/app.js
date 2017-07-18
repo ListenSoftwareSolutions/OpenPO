@@ -109,6 +109,15 @@
             //return response;
         };
     });
+    app.factory('PurchaseOrderResource', [PurchaseOrderResource]);
+    function PurchaseOrderResource()
+    {
+        return {
+            getList: function ()
+            {
+            }
+        }
+    };
     app.factory('AddressBookResource', ['AddressBookService', AddressBookResource]);
     function AddressBookResource(AddressBookService) {
         return {
@@ -133,6 +142,28 @@
             $urlRouterProvider.otherwise("/");
 
 
+            var poSearch =
+                {
+                    name: "poSearch",
+                    url: "/search:search",
+                    templateUrl: "app/purchaseOrder/purchaseOrderListView.html",
+                    controller: "PurchaseOrderListController",
+                    controllerAs: "ViewModel",
+                    resolve: {
+                        
+                        PurchaseOrders: function (PurchaseOrderResource, $stateParams) {
+                            var search=$stateParams.search;
+                            var purchaseOrderTemp = {
+                                customerAddressId: "2",
+                                description: "My Purchase Order",
+                                message: ""
+                            };
+                            purchaseOrderTemp.message = search;
+                            return (purchaseOrderTemp);
+                        }
+                    }
+                  
+                };
             var companyDetail = {
                 name: "companyDetail",
                 url: "/companies/details/:addressId",
@@ -141,7 +172,7 @@
                 controllerAs: "ViewModel",
                 resolve: {
 
-                    AddressBookResource: "AddressBookResource",
+                    //AddressBookResource: "AddressBookResource",
                     AddressBook: function (AddressBookResource, $stateParams)
                     {
                         var addressIdParam = $stateParams.addressId;
@@ -277,6 +308,7 @@
             $stateProvider.state(companyEdit);
             $stateProvider.state(companyUpdate);
             $stateProvider.state(companyDetail);
+            $stateProvider.state(poSearch);
 
         }])
 }());

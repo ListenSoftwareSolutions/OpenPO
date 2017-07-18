@@ -24,6 +24,7 @@
    <script src="Scripts/MyScripts/AddressBookListController.js"></script>
     <script src="Scripts/MyScripts/AddressBookDetailController.js"></script>
     <script src="Scripts/MyScripts/AddressBookEditController.js"></script>
+    <script src="Scripts/MyScripts/PurchaseOrderListController.js"></script>
    
 </head>
 <body ng-app="OpenPOModule" >
@@ -49,9 +50,13 @@
             </div>
 
         </nav>
-        
-            <a ui-sref="hello" ui-sref-active="active">Hello</a>
-            <ui-view></ui-view>
+            
+            <input id="txtSearch" ng-model="searchBox" type="text" />
+        <a ui-sref="poSearch({search:searchBox})" class="btn btn-primary" >Search</a>
+    <input type="button" onclick="alert($('#txtSearch').val())" value="Search" class="btn btn-primary" />
+
+    <a ui-sref="hello" ui-sref-active="active">Hello</a>
+    <ui-view></ui-view>
 
 
 </div>
