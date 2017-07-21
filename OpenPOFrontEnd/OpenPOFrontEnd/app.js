@@ -109,12 +109,41 @@
             //return response;
         };
     });
-    app.factory('PurchaseOrderResource', [PurchaseOrderResource]);
-    function PurchaseOrderResource()
+    app.service('PurchaseOrderService', function ($http) {
+        this.getList = function (search) {
+
+            var accesstoken = sessionStorage.getItem('accessToken');
+
+            var authHeaders = {};
+            if (accesstoken) {
+                authHeaders.Authorization = 'Bearer ' + accesstoken;
+            }
+
+            var webapiurl;
+            if (search == '') {
+                webapiurl = "http://localhost:51829/api/purchaseOrder/GetAllList";
+            }
+            else {
+                webapiurl = "http://localhost:51829/api/purchaseOrder/GetList/" + search;
+            }
+          
+            var response = $http({
+                url:webapiurl,
+                method: "GET",
+                headers: authHeaders
+            });
+            return response;
+        }
+    });
+    app.factory('PurchaseOrderResource', ['PurchaseOrderService',PurchaseOrderResource]);
+    function PurchaseOrderResource(PurchaseOrderService)
     {
         return {
-            getList: function ()
+            getList: function (search)
             {
+               return PurchaseOrderService.getList(search).then(function (resp) {
+               return resp.data;
+                });
             }
         }
     };
@@ -152,7 +181,10 @@
                     resolve: {
                         
                         PurchaseOrders: function (PurchaseOrderResource, $stateParams) {
-                            var search=$stateParams.search;
+                            var search = $stateParams.search;
+
+                            return (PurchaseOrderResource.getList(search));
+                            /*
                             var purchaseOrderTemp = {
                                 customerAddressId: "2",
                                 description: "My Purchase Order",
@@ -160,6 +192,7 @@
                             };
                             purchaseOrderTemp.message = search;
                             return (purchaseOrderTemp);
+                            */
                         }
                     }
                   

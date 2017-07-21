@@ -28,5 +28,7 @@ namespace OpenPO.Database
         public string Description { get; set; }
         public Nullable<long> ItemNumber { get; set; }
         public string PONumber { get; set; }
+        public Nullable<int> Quantity { get; set; }
+        public string Unit { get; set; }
     }
 }

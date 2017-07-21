@@ -24,9 +24,16 @@ namespace OpenPO.Controllers
         }
         // GET: api/PurchaseOrder
         //[Authorize]
-        public List<PurchaseOrderModels> Get()
+        public List<PurchaseOrderModels> GetList(string search)
         {
-            List<PurchaseOrderModels> listPurchaseOrders = _PurchaseOrderRepository.GetAllPurchaseOrders();
+            List<PurchaseOrderModels> listPurchaseOrders = _PurchaseOrderRepository.GetPurchaseOrders(search);
+
+            return listPurchaseOrders;
+
+        }
+        public List<PurchaseOrderModels> GetAllList()
+        {
+            List<PurchaseOrderModels> listPurchaseOrders = _PurchaseOrderRepository.GetPurchaseOrders("");
 
             return listPurchaseOrders;
 

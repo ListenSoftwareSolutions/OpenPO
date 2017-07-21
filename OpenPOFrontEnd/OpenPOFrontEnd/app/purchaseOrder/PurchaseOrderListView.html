@@ -1,4 +1,27 @@
 ﻿<div ng-app="OpenPOModule">
     <h3>Purchase Orders</h3>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Net Terms</th>
+                <th>Description</th>
+                <th>Po-Number</th>
+                <th>Quantity</th>
+                <th>Unit</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="po in ViewModel.PurchaseOrders">
+                <td>{{po.paymentTerms}}</td>
+                <td>{{po.description}}</td>
+                <td>{{po.poNumber}}</td>
+                <td>{{po.quantity}}</td>
+                <td>{{po.unit}}</td>
+                <td><a ui-sref="poDetail({id:{{po.id}}})">Detail</a></td>
+                <td><a ui-sref="poEdit({id:{{po.id}}})">Edit</a></td>
+            </tr>
+        </tbody>
+    </table>
     Message:<span>{{ViewModel.Message}}</span>
 </div>

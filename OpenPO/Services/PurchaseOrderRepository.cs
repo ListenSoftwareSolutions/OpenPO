@@ -13,7 +13,7 @@ namespace OpenPO.Services
         void AddPurchaseOrder(PurchaseOrder po);
         void UpdatePurchaseOrder(PurchaseOrder po_update);
         PurchaseOrderModels GetPurchaseOrder(long? paramId);
-        List<PurchaseOrderModels> GetAllPurchaseOrders();
+        List<PurchaseOrderModels> GetPurchaseOrders(string search);
 
     }
     public class PurchaseOrderRepository : IPurchaseOrderRepository
@@ -90,7 +90,9 @@ namespace OpenPO.Services
                               POQuoteId = b.POQuoteId,
                               Description = b.Description,
                               ItemNumber = b.ItemNumber,
-                              PONumber = b.PONumber
+                              PONumber = b.PONumber,
+                              Unit = b.Unit,
+                              Quantity = b.Quantity
                           }).Single<PurchaseOrderModels>();
 
 
@@ -104,7 +106,7 @@ namespace OpenPO.Services
 
             return (po);
         }
-        public List<PurchaseOrderModels> GetAllPurchaseOrders()
+        public List<PurchaseOrderModels> GetPurchaseOrders(string search)
         {
             List<PurchaseOrderModels> poList = new List<PurchaseOrderModels>();
 
@@ -115,10 +117,18 @@ namespace OpenPO.Services
                     var query = (from b in db.PurchaseOrders
                                  join c in db.AddressBooks
                                  on b.SupplierAddressId equals c.AddressId
+                                 into cs
+                                 from c in cs.DefaultIfEmpty()
+
                                  join d in db.AddressBooks
                                  on b.CustomerAddressId equals d.AddressId
 
-                                 select new PurchaseOrderModels
+                                 where 
+                            
+                                 b.Description.Contains(search)
+                                
+                  
+                    select new PurchaseOrderModels
                                  {
                                      Id = b.Id,
                                      POType = b.POType,
@@ -134,7 +144,9 @@ namespace OpenPO.Services
                                      POQuoteId = b.POQuoteId,
                                      Description = b.Description,
                                      ItemNumber = b.ItemNumber,
-                                     PONumber = b.PONumber
+                                     PONumber = b.PONumber,
+                                     Unit = b.Unit,
+                                     Quantity=b.Quantity
                                  });
 
                     poList = query.ToList<PurchaseOrderModels>();

@@ -31,20 +31,28 @@ namespace OpenPO
             // Web API routes
             config.MapHttpAttributeRoutes();
 
-            config.Routes.MapHttpRoute(
-              name: "DefaultApi",
-              routeTemplate: "api/{controller}/{id}",
-              defaults: new { id = RouteParameter.Optional }
-          );
+           
          
+            config.Routes.MapHttpRoute(
+                name: "PurchaseOrderApi",
+                routeTemplate: "api/{controller}/GetList/{search}",
+                defaults: new { search = RouteParameter.Optional }
+            );
+            config.Routes.MapHttpRoute(
+               name: "PurchaseOrderApi2",
+               routeTemplate: "api/{controller}/GetAllList"
+           );
 
             config.Routes.MapHttpRoute(
                 name: "AddressBookApi",
-                routeTemplate: "api/{controller}/{action}/{email}/"
+                routeTemplate: "api/AddressBook/{action}/{email}/"
                 , defaults: new
                 {
                     email = RouteParameter.Optional
                 });
+
+           
+         
 
             config.Routes.MapHttpRoute(
                 name: "UDCApi",
@@ -55,7 +63,11 @@ namespace OpenPO
                 });
 
 
-
+            config.Routes.MapHttpRoute(
+             name: "DefaultApi",
+             routeTemplate: "api/{controller}/{id}",
+             defaults: new { id = RouteParameter.Optional }
+         );
 
 
         }
